@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <style>
+        code {
+            display: block;
+            white-space: pre;
+        }
+
+        tr th:first-child {
+            width: 37%;
+        }
+
+        span[contenteditable="true"] {
+            display: inline-block;
+            width: 100px;
+            border-bottom: .5px solid #777;
+			padding-left: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <table class="table table-stripe" id="table">
+                    <thead>
+                        <tr>
+                            <th>Usage</th>
+                            <th>Code</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <b class="d-block">Add Comma to number</b>
+                                <span class="d-block">
+                                    addCormer(number, decimal, round);
+                                </span>
+                            </td>
+                            <td>
+                                <code>function numberThousand(num, dec, round) {</code><code>    if(round) {</code><code>        num = parseFloat(num);</code><code>        num.toFixed(dec);</code><code>    }</code><code>    num += '';</code><code>    var splitNumber = num.split('.');</code><code>    var firstNumber = splitNumber[0];</code><code>    var rgx = /(\d+)(\d{3})/;</code><code>    while (rgx.test(firstNumber)) {</code><code>        firstNumber = firstNumber.replace(rgx, '$1' + ',' + '$2');</code><code>    }</code><code>    if (splitNumber[1]) {</code><code>        var secondNumber = splitNumber[1];</code><code>        if(!dec) {</code><code>            dec = secondNumber.length;</code><code>        }</code><code>    } else {</code><code>        var secondNumber = "00000000";</code><code>    }</code><code>    if(!dec) {</code><code>        dec=0;</code><code>    }</code><code>    var splitSecondNumber = (""+secondNumber).split("");</code><code>    if (splitSecondNumber.length < dec) {</code><code>        for (var i = splitNumber[1].length; i < dec; i++) {</code><code>            splitSecondNumber.push("0");</code><code>        }</code><code>    }</code><code>    var decimalNumber = [];</code><code>    $.each(splitSecondNumber, function(k,v){</code><code>        if (k < dec) {</code><code>            var pushTheNumber = v;</code><code>            decimalNumber.push(pushTheNumber);</code><code>        }</code><code>    });</code><code>    var joinSecondNumber = decimalNumber.join("");</code><code>    if (dec == 0) {</code><code>        var actualNumber = firstNumber;</code><code>    } else {</code><code>        var actualNumber = firstNumber + "." + joinSecondNumber;</code><code>    }</code><code>    return actualNumber;</code><code>}</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b class="d-block">Loop table data</b>
+                                <span class="d-block">
+                                    <span class="text-danger">*</span> This code is editable
+                                </span>
+                            </td>
+                            <td>
+                                <code>var newList = [];</code><code>var arr = data.<span contenteditable="true"></span>;</code><code>if(arr) {</code><code>	$.each(arr, function(k, v){</code><code>		var rebuildData = {</code><code>			<span contenteditable="true"></span>: v.<span contenteditable="true"></span>,</code><code>		}</code><code>		newList.push(rebuildData);</code><code>	});</code><code>	buildTable(newList, tableId, divId, thArray, btnArray, message, tableNo);</code><code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>}</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b class="d-block">Only Allow Numeric Input</b>
+                            </td>
+                            <td>
+                                <code>oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b class="d-block">Limit decimal input</b>
+                            </td>
+                            <td>
+                                <code>oninput="this.value = this.value.match(/^[0-9]+\.?[0-9]{0,<span contenteditable="true">2</span>}/);"</code>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b class="d-block">Array Filter</b>
+                            </td>
+                            <td>
+                                <code>var filteredArr = (data.<span contenteditable="true">listing</span>).filter((item) => item.<span contenteditable="true">id</span> == <span contenteditable="true">id</span> )</code>
+                            </td>
+                        </tr>
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
