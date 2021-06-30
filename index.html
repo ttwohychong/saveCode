@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="gridContainer">
+        <div id="sideBar" class="sideBar"></div>
+        <div class="bodyContent">
+            <div class="sectionDisplay" id="callBackend">
+                <h4>Call backend</h4>
+                <p>Method 1</p>
+                <p>Use this method in all page except login.php</p>
+                <div class="codeBlock">
+                    <code>var url             = 'scripts/reqDefault.php';</code><code>var method          = 'POST';</code><code>var debug           = 0;</code><code>var bypassBlocking  = 0;</code><code>var bypassLoading   = 0;</code><code>var formData  = {</code><code>    command    : <span contenteditable="true"></span>, //api command name</code><code>    <span contenteditable="true"></span>: <span contenteditable="true"></span> //params that required to pass to backend</code><code>};</code><code>var fCallback = loadDefaultListing;</code><code>ajaxSend(url, formData, method, fCallback, debug, bypassBlocking, bypassLoading, 0); // Call backend using this function</code><br><code>function loadDefaultListing(data, message) {} // when function run successfully, will run this function (fCallback function)</code>
+                </div>
+                <p class="mt-3">Method 2</p>
+                <p>If method 1 not working, can try this method to call backend</p>
+                <div class="codeBlock">
+                    <code>$.ajax({</code><code>    type     : 'POST', // define the type of HTTP verb we want to use (POST for our form)</code><code>    url      : 'scripts/reqLogin.php', // the url where we want to POST</code><code>    data     : formData, // our data object</code><code>    dataType : 'text', // what type of data do we expect back from the server</code><code>    encode   : true</code><code>}).done(function(data) {</code><code>    var obj = JSON.parse(data); // the data that returns from backend</code><code>});</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="tableFunction">
+                <h4>Table Function</h4>
+                <p>Method 1</p>
+                <p>Use this method to build standard table</p>
+                <div class="codeBlock">
+                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code><code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code><code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code><code>var btnArray = {};</code><br><code>var thArray  = Array(</code><code>	"<span contenteditable="true">Created At</span>",</code><code>	"<span contenteditable="true">Username</span>"</code><code>);</code><br><code>var newList = [];</code><code>var arr = data['<span contenteditable="true">listing</span>'];</code><code>if(arr) {</code><code>	$.each(arr, function(k, v){</code><code>		var rebuildData = {</code><code>			<span contenteditable="true">username</span>: <span contenteditable="true">v['username']</span></code><code>		}</code><code>		newList.push(rebuildData);</code><code>	});</code><code>	buildTable(newList, tableId, divId, thArray, btnArray, message, tableNo);</code><code>	pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>}</code>
+                </div>
+                <p class="mt-3">Method 2</p>
+                <p>Use this method to build table with sub table</p>
+                <div class="codeBlock">
+                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code><code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code><code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code><code>var btnArray = {};</code><code>var thArray  = Array(</code><code>	"<span contenteditable="true">Created At</span>",</code><code>	"<span contenteditable="true">Username</span>"</code><code>);</code><code>// sub header</code><code>var subthArray  = Array(</code><code>    "<span contenteditable="true">Sub Header 1</span>",</code><code>    "<span contenteditable="true">Sub Header 2</span>",</code><code>);</code><code>if(data['<span contenteditable="true">orderList</span>']){</code><code>    var header = "";</code><code>    var subheader = "";</code><code>    var body = "";</code><code>    $.each(thArray, function(k, v){</code><code>        header += `&lt;th>${v}&lt;/th>`;</code><code>    });</code><code>    $.each(subthArray, function(k, v){</code><code>        subheader += `&lt;th&gt;${v}&lt;/th&gt;`;</code><code>    });</code><code>    $.each(data['<span contenteditable="true">orderList</span>'], function(k, v){</code><code>    	var btnDetails = `&lt;button type="button" class="btn btn-Log showLogBtn"&gt;&lt;/button&gt;`;</code><code>        var log = v['<span contenteditable="true">paymentMethodArr</span>'];</code><code>        if(log && log.length &gt; 0) {</code><code>        	// if has sub table data</code><code>            var logHtml = ""; // declare sub table variable</code><code>            //build sub table content</code><code>            $.each(log, function(k1, v1){</code><code>                logHtml += `</code><code>                    &lt;tr&gt;</code><code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData1</span>']}&lt;/td&gt;</code><code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData2</span>']}&lt;/td&gt;</code><code>                    &lt;/tr&gt;</code><code>                `;</code><code>            });</code><code>            // build table content</code><code>            body += `</code><code>                &lt;tr&gt;</code><code>                    &lt;td&gt;${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code><code>                    &lt;td&gt;${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code><code>                    &lt;td&gt;${btnDetails}&lt;/td></code><code>                &lt;/tr&gt;</code><code>            `;</code><code>            // build sub table</code><code>            body += `</code><code>                &lt;tr class="logTable"&gt;</code><code>                    &lt;td colspan="13"&gt;</code><code>                        &lt;div&gt;</code><code>                            &lt;table class="table"&gt;</code><code>                                &lt;thead&gt;&lt;tr&gt;${subheader}&lt;/tr&gt;&lt;/thead&gt;</code><code>                                &lt;tbody&gt;${logHtml}&lt;/tbody&gt;</code><code>                            &lt;/table&gt;</code><code>                        &lt;/div&gt;</code><code>                    &lt;/td&gt;</code><code>                &lt;/tr&gt;</code><code>            `;</code><code>        }else{</code><code>        	// build table without sub table</code><code>            body += `</code><code>                &lt;tr&gt;</code><code>                    &lt;td>${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code><code>                    &lt;td>${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code><code>                    &lt;td>${btnDetails}&lt;/td&gt;</code><code>                &lt;/tr&gt;</code><code>            `;</code><code>        }</code><code>    });</code><code>    $("#"+divId).html(`</code><code>        &lt;table id="${tableId}" class="table table-striped tableHeadCustom" style="margin-bottom:0"&gt;</code><code>            &lt;thead>&lt;tr&gt;${header}&lt;/tr&gt;&lt;/thead&gt;</code><code>            &lt;tbody&gt;${body}&lt;/tbody&gt;</code><code>        &lt;/table&gt;</code><code>    `);</code><code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>    // log button function</code><code>    $(".showLogBtn").click(function(){</code><code>		var getNextRow = $(this).parent().parent().next();</code><code>		getNextRow.toggleClass("open");</code><code>		$(this).toggleClass("active");</code><code>    });</code><code>} else {</code><code>	// handle no result</code><code>    $('#'+tableId).empty();</code><code>    $('#alertMsg').addClass('alert-success').html('&lt;span&gt;No Result Found&lt;/span&gt;').show();</code><code>}</code>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -9,23 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <style>
-        code {
-            display: block;
-            white-space: pre;
-        }
-
-        tr th:first-child {
-            width: 37%;
-        }
-
-        span[contenteditable="true"] {
-            display: inline-block;
-            width: 100px;
-            border-bottom: .5px solid #777;
-			padding-left: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
     <div class="container-fluid">
@@ -54,11 +38,11 @@
                             <td>
                                 <b class="d-block">Loop table data</b>
                                 <span class="d-block">
-                                    <span class="text-danger">*</span> This code is editable
+                                    This is the function to build a table
                                 </span>
                             </td>
                             <td>
-                                <code>var newList = [];</code><code>var arr = data.<span contenteditable="true"></span>;</code><code>if(arr) {</code><code>	$.each(arr, function(k, v){</code><code>		var rebuildData = {</code><code>			<span contenteditable="true"></span>: v.<span contenteditable="true"></span>,</code><code>		}</code><code>		newList.push(rebuildData);</code><code>	});</code><code>	buildTable(newList, tableId, divId, thArray, btnArray, message, tableNo);</code><code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>}</code>
+                                <code>var newList = [];</code><code>var arr = data.<span contenteditable="true">listing</span>;</code><code>if(arr) {</code><code>	$.each(arr, function(k, v){</code><code>		var rebuildData = {</code><code>			<span contenteditable="true">username</span>: v['<span contenteditable="true">username</span>']</code><code>		}</code><code>		newList.push(rebuildData);</code><code>	});</code><code>	buildTable(newList, tableId, divId, thArray, btnArray, message, tableNo);</code><code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>}</code>
                             </td>
                         </tr>
                         <tr>
