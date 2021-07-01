@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 code {
     display: block;
     white-space: pre;
@@ -28,9 +32,9 @@ p {
     display: block;
     width: 100%;
     padding: 5px 15px;
-    border-top: 1px solid #ccc;
     color: #000;
     font-weight: bold;
+    margin-top: 15px;
 }
 
 .sideBar .sideBarItem {
@@ -52,8 +56,32 @@ p {
     padding: 15px 30px;
 }
 
+.backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    font-weight: bolder;
+    font-size: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0,0,0,.05);
+    text-decoration: none;
+    color: #777;
+    transition: .3s;
+    border-radius: 50%;
+}
+
+.backToTop:hover {
+    background-color: rgba(0,0,0,.2);
+    text-decoration: none;
+    color: #000;
+}
+
 .sectionDisplay {
-    margin-top: 30px;
+    margin-bottom: 30px;
 }
 
 .codeBlock {

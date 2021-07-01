@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Code</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
@@ -42,7 +43,68 @@
                     <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code><code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code><code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code><code>var btnArray = {};</code><code>var thArray  = Array(</code><code>	"<span contenteditable="true">Created At</span>",</code><code>	"<span contenteditable="true">Username</span>"</code><code>);</code><code>// sub header</code><code>var subthArray  = Array(</code><code>    "<span contenteditable="true">Sub Header 1</span>",</code><code>    "<span contenteditable="true">Sub Header 2</span>",</code><code>);</code><code>if(data['<span contenteditable="true">orderList</span>']){</code><code>    var header = "";</code><code>    var subheader = "";</code><code>    var body = "";</code><code>    $.each(thArray, function(k, v){</code><code>        header += `&lt;th>${v}&lt;/th>`;</code><code>    });</code><code>    $.each(subthArray, function(k, v){</code><code>        subheader += `&lt;th&gt;${v}&lt;/th&gt;`;</code><code>    });</code><code>    $.each(data['<span contenteditable="true">orderList</span>'], function(k, v){</code><code>    	var btnDetails = `&lt;button type="button" class="btn btn-Log showLogBtn"&gt;&lt;/button&gt;`;</code><code>        var log = v['<span contenteditable="true">paymentMethodArr</span>'];</code><code>        if(log && log.length &gt; 0) {</code><code>        	// if has sub table data</code><code>            var logHtml = ""; // declare sub table variable</code><code>            //build sub table content</code><code>            $.each(log, function(k1, v1){</code><code>                logHtml += `</code><code>                    &lt;tr&gt;</code><code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData1</span>']}&lt;/td&gt;</code><code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData2</span>']}&lt;/td&gt;</code><code>                    &lt;/tr&gt;</code><code>                `;</code><code>            });</code><code>            // build table content</code><code>            body += `</code><code>                &lt;tr&gt;</code><code>                    &lt;td&gt;${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code><code>                    &lt;td&gt;${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code><code>                    &lt;td&gt;${btnDetails}&lt;/td></code><code>                &lt;/tr&gt;</code><code>            `;</code><code>            // build sub table</code><code>            body += `</code><code>                &lt;tr class="logTable"&gt;</code><code>                    &lt;td colspan="13"&gt;</code><code>                        &lt;div&gt;</code><code>                            &lt;table class="table"&gt;</code><code>                                &lt;thead&gt;&lt;tr&gt;${subheader}&lt;/tr&gt;&lt;/thead&gt;</code><code>                                &lt;tbody&gt;${logHtml}&lt;/tbody&gt;</code><code>                            &lt;/table&gt;</code><code>                        &lt;/div&gt;</code><code>                    &lt;/td&gt;</code><code>                &lt;/tr&gt;</code><code>            `;</code><code>        }else{</code><code>        	// build table without sub table</code><code>            body += `</code><code>                &lt;tr&gt;</code><code>                    &lt;td>${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code><code>                    &lt;td>${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code><code>                    &lt;td>${btnDetails}&lt;/td&gt;</code><code>                &lt;/tr&gt;</code><code>            `;</code><code>        }</code><code>    });</code><code>    $("#"+divId).html(`</code><code>        &lt;table id="${tableId}" class="table table-striped tableHeadCustom" style="margin-bottom:0"&gt;</code><code>            &lt;thead>&lt;tr&gt;${header}&lt;/tr&gt;&lt;/thead&gt;</code><code>            &lt;tbody&gt;${body}&lt;/tbody&gt;</code><code>        &lt;/table&gt;</code><code>    `);</code><code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>    // log button function</code><code>    $(".showLogBtn").click(function(){</code><code>		var getNextRow = $(this).parent().parent().next();</code><code>		getNextRow.toggleClass("open");</code><code>		$(this).toggleClass("active");</code><code>    });</code><code>} else {</code><code>	// handle no result</code><code>    $('#'+tableId).empty();</code><code>    $('#alertMsg').addClass('alert-success').html('&lt;span&gt;No Result Found&lt;/span&gt;').show();</code><code>}</code>
                 </div>
             </div>
+            <div class="sectionDisplay" id="loginSession">
+                <h4>Set Session after Login (Login API)</h4>
+                <p>Set session from login api</p>
+                <p>In File: reqLogin.php, API: memberLogin, add a line for session</p>
+                <div class="codeBlock">
+                    <code>$_SESSION["<span contenteditable="true">countryList</span>"] = $result['data']['<span contenteditable="true">countryList</span>'];</code>
+                    <code>$_SESSION["<span contenteditable="true">username</span>"] = $result['data']['<span contenteditable="true">username</span>'];</code>
+                </div>
+                <p>To loop array from php session array</p>
+                <div class="codeBlock">
+                    <code>&lt;?php foreach($_SESSION["<span contenteditable="true">countryList</span>"] as $value){ ?&gt;</code><code>    &lt;option value="&lt;?php echo $value['<span contenteditable="true">id</span>']; ?&gt;"&gt;&lt;?php echo $value['<span contenteditable="true">display</span>']; ?&gt;&lt;/option&gt;</code><code>&lt;?php } ?&gt;</code>
+                </div>
+                <p>To display session data</p>
+                <div class="codeBlock">
+                    <code>&lt;?php echo $_SESSION['<span contenteditable="true">username</span>']; ?&gt;</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="doSpaces">
+                <h4>Upload / Download Media to / from Digital Ocean</h4>
+                <p>Needed Files</p>
+                <ul>
+                    <li>doSpaces Folder</li>
+                    <li>scripts/reqUploadCDN.php</li>
+                    <li>scripts/reqDownloadCDN.php</li>
+                </ul>
+                <p>To upload media</p>
+                <p>You will need to build an object array like this</p>
+                <div class="codeBlock">
+                    <code>reqData: {</code><code>    english: {</code><code>        imgName: "img123.png",</code><code>        imgData: BASE64 Data</code><code>    },</code><code>    chineseSimplified: {</code><code>        imgName: "img456.png",</code><code>        imgData: BASE64 Data</code><code>    }</code><code>}</code>
+                </div>
+                <p class="mt-2">When upload image success, you will get new image name (which is the image url from digital ocean) from backend, use the below code to upload the image to Digital Ocean.</p>
+                <div class="codeBlock">
+                    <code>function submitCallback(data, message) {</code><code>    if(data){</code><code>        $('#modalProcessing').modal('show'); // show image upload in progress modal</code><code>        $.each(data, function (lang, val) {</code><code>            var reqData2 = new FormData();</code><br><code>            if(val['<span contenteditable="true">imgName</span>']){</code><code>                var imagefiles = reqData<span contenteditable="true">[lang]['imgData']</span>;</code><code>                var block = imagefiles.split(";");</code><br><code>                // Get the content type of the image</code><code>                var contentType = block[0].split(":")[1];</code><br><code>                // get the real base64 content of the file</code><code>                var realData = block[1].split(",")[1];</code><br><code>                // // Convert it to a blob to upload</code><code>                var blob = b64toBlob(realData, contentType);</code><br><code>                reqData2.append('imageData', blob);</code><code>                reqData2.append('image', val['imgName']);</code><code>            }</code><br><code>            $.ajax({</code><code>                url: 'scripts/reqUploadCDN.php',</code><code>                type: 'post',</code><code>                data: reqData2,</code><code>                contentType: false,</code><code>                processData: false,</code><code>                async: false,</code><code>                success: function(data){</code><code>                    // success upload image</code><code>                },</code><code>            });</code><code>        });</code><br><code>        $('#modalProcessing').modal('hide'); // show image upload in progress modal</code><br><code>        <span contenteditable="true">uploadVideoSuccess</span>(); // success function</code><code>    }</code><code>}</code>
+                    <br>
+                    <code>function b64toBlob(b64Data, contentType, sliceSize) {</code><code>    contentType = contentType || '';</code><code>    sliceSize = sliceSize || 512;</code><br><code>    var byteCharacters = atob(b64Data);</code><code>    var byteArrays = [];</code><br><code>    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {</code><code>        var slice = byteCharacters.slice(offset, offset + sliceSize);</code><br><code>        var byteNumbers = new Array(slice.length);</code><code>        for (var i = 0; i < slice.length; i++) {</code><code>            byteNumbers[i] = slice.charCodeAt(i);</code><code>        }</code><br><code>        var byteArray = new Uint8Array(byteNumbers);</code><br><code>        byteArrays.push(byteArray);</code><code>    }</code><br><code>  var blob = new Blob(byteArrays, {type: contentType});</code><code>  return blob;</code><code>}</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="socket">
+                <h4>Socket Function</h4>
+                <p><a href="socket.php" download>Download Me</a></p>
+                <p>First, include socket.php in the page you need apply socket function</p>
+                <div class="codeBlock">
+                    <code>&lt;?php include 'socket.php' ?&gt;</code>
+                </div>
+                <p class="mt-2">Second, declare a variable to get socket url from config file</p>
+                <div class="codeBlock">
+                    <code>var socket = '&lt;?php echo $config['socketUrl'];?&gt;';</code>
+                </div>
+                <p class="mt-2">Third, use this function to grab socket data</p>
+                <div class="codeBlock">
+                    <code>var conn = new ab.Session(socket,     </code><code>function() {</code><code>        conn.subscribe('<span contenteditable="true">binanceBTC1m</span>', function(topic, data) {</code><code>        	// your code here</code><code>        });</code><code>    },</code><code>    function() {</code><code>        console.warn('WebSocket connection closed');</code><code>    },</code><code>    {'skipSubprotocolCheck': true}</code><code>);</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="numberThousand">
+                <h4>Number Thousand</h4>
+                <p>Add comma to number</p>
+                <div class="codeBlock">
+                    <code>function numberThousand(num, dec, round) {</code><code>    if(round) {</code><code>        num = parseFloat(num);</code><code>        num.toFixed(dec);</code><code>    }</code><code>    num += '';</code><code>    var splitNumber = num.split('.');</code><code>    var firstNumber = splitNumber[0];</code><code>    var rgx = /(\d+)(\d{3})/;</code><code>    while (rgx.test(firstNumber)) {</code><code>        firstNumber = firstNumber.replace(rgx, '$1' + ',' + '$2');</code><code>    }</code><code>    if (splitNumber[1]) {</code><code>        var secondNumber = splitNumber[1];</code><code>        if(!dec && dec!=0) {</code><code>            dec = secondNumber.length;</code><code>        }</code><code>    } else {</code><code>        var secondNumber = "00000000";</code><code>    }</code><code>    if(!dec) {</code><code>        dec=0;</code><code>    }</code><code>    var splitSecondNumber = (""+secondNumber).split("");</code><code>    if (splitSecondNumber.length < dec) {</code><code>        for (var i = splitNumber[1].length; i < dec; i++) {</code><code>            splitSecondNumber.push("0");</code><code>        }</code><code>    }</code><code>    var decimalNumber = [];</code><code>    $.each(splitSecondNumber, function(k,v){</code><code>        if (k < dec) {</code><code>            var pushTheNumber = v;</code><code>            decimalNumber.push(pushTheNumber);</code><code>        }</code><code>    });</code><code>    var joinSecondNumber = decimalNumber.join("");</code><code>    if (dec == 0) {</code><code>        var actualNumber = firstNumber;</code><code>    } else {</code><code>        var actualNumber = firstNumber + "." + joinSecondNumber;</code><code>    }</code><code>    return actualNumber;</code><code>}</code>
+                </div>
+            </div>
         </div>
     </div>
+    <a href="#" class="backToTop"><i class="fa fa-arrow-up"></i></a>
 </body>
 </html>
