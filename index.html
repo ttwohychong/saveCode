@@ -103,8 +103,42 @@
                     <code>function numberThousand(num, dec, round) {</code><code>    if(round) {</code><code>        num = parseFloat(num);</code><code>        num.toFixed(dec);</code><code>    }</code><code>    num += '';</code><code>    var splitNumber = num.split('.');</code><code>    var firstNumber = splitNumber[0];</code><code>    var rgx = /(\d+)(\d{3})/;</code><code>    while (rgx.test(firstNumber)) {</code><code>        firstNumber = firstNumber.replace(rgx, '$1' + ',' + '$2');</code><code>    }</code><code>    if (splitNumber[1]) {</code><code>        var secondNumber = splitNumber[1];</code><code>        if(!dec && dec!=0) {</code><code>            dec = secondNumber.length;</code><code>        }</code><code>    } else {</code><code>        var secondNumber = "00000000";</code><code>    }</code><code>    if(!dec) {</code><code>        dec=0;</code><code>    }</code><code>    var splitSecondNumber = (""+secondNumber).split("");</code><code>    if (splitSecondNumber.length < dec) {</code><code>        for (var i = splitNumber[1].length; i < dec; i++) {</code><code>            splitSecondNumber.push("0");</code><code>        }</code><code>    }</code><code>    var decimalNumber = [];</code><code>    $.each(splitSecondNumber, function(k,v){</code><code>        if (k < dec) {</code><code>            var pushTheNumber = v;</code><code>            decimalNumber.push(pushTheNumber);</code><code>        }</code><code>    });</code><code>    var joinSecondNumber = decimalNumber.join("");</code><code>    if (dec == 0) {</code><code>        var actualNumber = firstNumber;</code><code>    } else {</code><code>        var actualNumber = firstNumber + "." + joinSecondNumber;</code><code>    }</code><code>    return actualNumber;</code><code>}</code>
                 </div>
             </div>
+            <div class="sectionDisplay" id="arrayFunction">
+                <h4>Array Function</h4>
+                <p>Method 1: Foreach Loop</p>
+                <p>This method will loop from first array / object item to last</p>
+                <div class="codeBlock">
+                    <code>$.each(<span contenteditable="true">data['list']</span>, function(k,v){</code><code>	// Your Code here</code><code>});</code>
+                </div>
+                <p class="mt-2">Method 2: For Loop</p>
+                <div class="codeBlock">
+                    <code>for(var i = 0; i < <span contenteditable="true">data['list'].length</span>; i++) {</code><code>	// Your code here</code><code>}</code>
+                </div>
+                <p class="mt-2">Filter Array based on object array properties</p>
+                <div class="codeBlock">
+                    <code>var filteredArr = (data.<span contenteditable="true">listing</span>).filter((item) => item.<span contenteditable="true">id</span> == <span contenteditable="true">id</span> )</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="numericInp">
+                <h4>Apply Numeric Input</h4>
+                <p>Add this to your input html (remove the dot if not allow decimal)</p>
+                <div class="codeBlock">
+                    <code>oninput="this.value = this.value.replace(/[^0-9<span contenteditable="true">.</span>]/g, '').replace(/(\..*)\./g, '$1');"</code>
+                </div>
+                <p class="mt-2">Limit decimal for numeric input</p>
+                <div class="codeBlock">
+                    <code>oninput="this.value = this.value.match(/^[0-9]+\.?[0-9]{0,<span contenteditable="true">2</span>}/);"</code>
+                </div>
+            </div>
         </div>
     </div>
     <a href="#" class="backToTop"><i class="fa fa-arrow-up"></i></a>
+
+    <div class="passwordBlock" id="passwordBlock">
+        <div class="passwordWrap">
+            <input type="password" id="password" class="form-control" placeholder="Password">
+            <button id="submit" type="button" class="btn btn-success ml-1"><i class="fa fa-arrow-right"></i></button>
+        </div>
+    </div>
 </body>
 </html>

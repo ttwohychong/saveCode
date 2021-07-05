@@ -100,3 +100,19 @@ span[contenteditable="true"] {
     border-bottom: .5px solid #777;
     padding-left: 5px;
 }
+
+.passwordBlock {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.passwordWrap {
+    width: 200px;
+    display: flex;
+}
