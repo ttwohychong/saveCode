@@ -8,6 +8,14 @@ $(document).ready(function(){
 });
 
 $(document).on("click", "#submit", function(){
+    checkPwd();
+});
+
+$(document).on("change", "#password", function(){
+    checkPwd();
+});
+
+function checkPwd() {
     var baseString = 'dDJ3ZUIxOTJteQ==';
     var enteredPwd = $("#password").val();
     var decodedString = window.btoa(enteredPwd);
@@ -15,5 +23,7 @@ $(document).on("click", "#submit", function(){
     if(decodedString == baseString) {
         sessionStorage.setItem("isLoginTtwo", true);
         $("#passwordBlock").hide();
+    }else{
+        alert("Invalid Password");
     }
-});
+}
