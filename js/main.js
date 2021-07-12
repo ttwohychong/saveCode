@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $("#sideBar").load("sidebar.html");
+    $("#debugSideBar").load("debugSidebar.html");
 
     var isLogin = sessionStorage.getItem("isLoginTtwo");
     if(isLogin) {
@@ -13,6 +14,12 @@ $(document).on("click", "#submit", function(){
 
 $(document).on("change", "#password", function(){
     checkPwd();
+});
+
+$(document).on("click", "img", function(){
+    var getSrc = $(this).attr("src");
+    $("#bigImg").attr("src", getSrc);
+    $("#viewImg").modal('show');
 });
 
 function checkPwd() {

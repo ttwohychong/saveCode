@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="gridContainer wrap">
+        <div id="debugSideBar" class="sideBar"></div>
+        <div class="bodyContent">
+            <div id="generalFlow">
+                <h4>Debug</h4>
+                <p>To debug, you may: </p>
+                <ol>
+                    <li>Check console log see whether got error message
+                        <!-- <ol>
+                            <a href="#error1"><li>Uncaught SyntaxError: Unexpected identifier</li></a>
+                            <a href="#error2"><li>When click button, page no effect (no hang)</li></a>
+                            <a href="#error3"><li>Filter not working</li></a>
+                            <a href="#error4"><li>When click button page hang, keep show loading icon</li></a>
+                            <a href="#error5"><li>After apply numberThousand function, showing NaN.00</li></a>
+                            <a href="#error6"><li>Uncaught TypeError: Cannot read property 'variable' of undefined</li></a>
+                        </ol> -->
+                    </li>
+                    <li>Check superadmin see api is it call successfully (and make sure data pass correctly)</li>
+                    <li>Check reqDefault have the command or not</li>
+                    <li>Check data you pass is it same with trello</li>
+                    <li>Grab latest language file from server using scp</li>
+                </ol>
+            </div>
+
+            <div class="sectionDisplay firstContent" id="error1">
+                <h4>Uncaught SyntaxError: Unexpected identifier</h4>
+                <ul>
+                    <li>Check every object comma / semicolon put correctly</li>
+                </ul>
+                <img src="img/comma.jpg" alt="" class="descImg">
+            </div>
+
+            <div class="sectionDisplay" id="error2">
+                <h4>When click button, page no effect (no hang)</h4>
+                <ul>
+                    <li>Make sure all error field display correctly based on backend return</li>
+                </ul>
+                <img src="img/errorField.jpg" alt="" class="descImg">
+            </div>
+
+            <div class="sectionDisplay" id="error3">
+                <h4>Filter not working</h4>
+                <ul>
+                    <li>Make sure pass searchData instead of inputData</li>
+                    <li>dataName = username, dataType = match / like instead of text</li>
+                    <li>Go superadmin to make sure searchData pass correctly</li>
+                </ul>
+                <img src="img/reqSearchData.jpg" alt="" class="descImg">
+                <img src="img/reqSearchDataWrong.jpg" alt="" class="descImg">
+                <img src="img/searchUsernameDataSuperAdmin.jpg" alt="" class="descImg">
+            </div>
+
+            <div class="sectionDisplay" id="error4">
+                <h4>When click button page hang, keep show loading icon</h4>
+                <ul>
+                    <li>Make sure language js is up to date</li>
+                    <li>Make sure error field display correctly</li>
+                </ul>
+            </div>
+
+            <div class="sectionDisplay" id="error5">
+                <h4>After apply numberThousand function, showing NaN.00</h4>
+                <ul>
+                    <li>Try parseFloat first for number then only apply numberThousand</li>
+                    <li>Make sure backend the data you get is not -, is yes, should do a condition if data == '-', number = 0</li>
+                </ul>
+            </div>
+
+            <div class="sectionDisplay" id="error6">
+                <h4>Uncaught TypeError: Cannot read property 'variable' of undefined</h4>
+                <ul>
+                    <li>Make sure the variable is declare correctly (var variable;)</li>
+                    <li>If the variable declared global, make sure when assign variable data in function didn't declare again the variable.
+                        Use variable = 1 instead of var variable = 1 in function</li>
+                </ul>
+                <div class="codeBlock">
+                    <code>var declaredVar;</code><code>$(document).ready(function(){});</code><code>function usedFunc() {</code><code>    declaredVar = YOUR_DATA; <i class="fa fa-check green"></i></code><code>    var declaredVar = YOUR_DATA; <i class="fa fa-times red"></i></code><code>}</code>
+                </div>
+            </div>
+
+            <div class="sectionDisplay" id="cssErr1">
+                <h4>CSS Image Stretch</h4>
+                <p>You may: </p>
+                <ul>
+                    <li>Add fix height to image</li>
+                    <li>Add align-items-start to parent container</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="backToTop"><i class="fa fa-arrow-up"></i></a>
+
+    <div class="passwordBlock" id="passwordBlock">
+        <div class="passwordWrap">
+            <input type="password" id="password" class="form-control" placeholder="Password">
+            <button id="submit" type="button" class="btn btn-success ml-1"><i class="fa fa-arrow-right"></i></button>
+        </div>
+    </div>
+</body>
+</html>
