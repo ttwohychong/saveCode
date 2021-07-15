@@ -88,6 +88,7 @@
                     <li>Make sure the variable is declare correctly (var variable;)</li>
                     <li>If the variable declared global, make sure when assign variable data in function didn't declare again the variable.
                         Use variable = 1 instead of var variable = 1 in function</li>
+                    <li>If it's Cannot read property '<span class="red">english</span>' of undefined, mean you hav to grab latest language js file from test site using scp.</li>
                 </ul>
                 <div class="codeBlock">
                     <code>var declaredVar;</code><code>$(document).ready(function(){});</code><code>function usedFunc() {</code><code>    declaredVar = YOUR_DATA; <i class="fa fa-check green"></i></code><code>    var declaredVar = YOUR_DATA; <i class="fa fa-times red"></i></code><code>}</code>

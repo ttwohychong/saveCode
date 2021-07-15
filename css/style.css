@@ -16,6 +16,10 @@ p {
     margin: 0;
 }
 
+p.nextMethod {
+    margin-top: 15px;
+}
+
 .gridContainer {
     max-width: 1400px;
     margin: 0 auto;
@@ -143,4 +147,8 @@ span[contenteditable="true"] {
 
 .bigImg {
     max-width: 100%;
+}
+
+.updateLog > li {
+    margin-bottom: 10px;
 }
