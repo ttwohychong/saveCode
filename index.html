@@ -116,6 +116,11 @@
             </div>
             <div class="sectionDisplay" id="arrayFunction">
                 <h4>Array Function</h4>
+                <div>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buildArray">Build Array</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buildObject">Build Object</button>
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#buildObjectArray">Build Object Array</button>
+                </div>
                 <p>Method 1: Foreach Loop</p>
                 <p>This method will loop from first array / object item to last</p>
                 <div class="codeBlock">
@@ -144,6 +149,87 @@
         </div>
     </div>
     <a href="#" class="backToTop"><i class="fa fa-arrow-up"></i></a>
+
+    <div class="modal" id="buildArray">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Build Array</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>Sample Data Result</p>
+                <div class="codeBlock">
+                    <code>object = [</code><code>  '1',</code><code>  '2',</code><code>  '3',</code><code>  '4',</code><code>  '5'</code><code>];</code>
+                </div>
+                <p class="mt-2">HTML should build like this</p>
+                <div class="codeBlock">
+                    <code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code>
+                </div>
+                <p class="mt-2">Function</p>
+                <div class="codeBlock">
+                    <code>var object = [];</code><br><code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code><code>  // Your Code here</code><code>  var value = $(v).val();</code><code>  object.push(value);</code><code>});</code>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal" id="buildObject">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Build Object</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>Sample Data Result</p>
+                <div class="codeBlock">
+                    <code>object = {</code><code>  dataKey1: value1,</code><code>  dataKey2: value2,</code><code>  dataKey3: value3,</code><code>  dataKey4: value4,</code><code>  dataKey5: value5</code><code>}</code>
+                </div>
+                <p class="mt-2">HTML should build like this</p>
+                <div class="codeBlock">
+                    <code>&lt;input class="inp form-control" data-key="dataKey1" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey2" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey3" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey4" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey5" value=""&gt;</code>
+                </div>
+                <p class="mt-2">JS</p>
+                <div class="codeBlock">
+                    <code>var object = {};</code><br><code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code><code>  var dataKey = $(v).attr("data-key");</code><code>  var value = $(v).val();</code><br><code>  object[dataKey] = value;</code><code>});</code>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal" id="buildObjectArray">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Build Object Array</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <p>Sample Data Result</p>
+                <div class="codeBlock">
+                    <code>object = [</code><code>  {type: "dataKey1", content: "value1"},</code><code>  {type: "dataKey2", content: "value2"},</code><code>  {type: "dataKey3", content: "value3"},</code><code>  {type: "dataKey4", content: "value4"},</code><code>  {type: "dataKey5", content: "value5"},</code><code>]</code>
+                </div>
+                <p class="mt-2">HTML should build like this</p>
+                <div class="codeBlock">
+                    <code>&lt;input class="inp form-control" data-key="dataKey1" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey2" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey3" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey4" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey5" value=""&gt;</code>
+                </div>
+                <p class="mt-2">JS</p>
+                <div class="codeBlock">
+                    <code>var object = [];</code><br><code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code><code>  var dataKey = $(v).attr("data-key");</code><code>  var value = $(v).val();</code><br><code>  object.push({</code><code>    type: dataKey,</code><code>    content: value</code><code>  });</code><code>});</code>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
 
     <div class="passwordBlock" id="passwordBlock">
         <div class="passwordWrap">
