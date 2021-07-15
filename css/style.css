@@ -135,6 +135,7 @@ span[contenteditable="true"] {
     width: 400px;
     margin-bottom: 10px;
     border: .5px solid black;
+    cursor: pointer;
 }
 
 .green {
