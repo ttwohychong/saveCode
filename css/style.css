@@ -88,6 +88,10 @@ p {
     margin-top: 150px;
 }
 
+.sectionDisplay.nextContent {
+    margin-top: 150px;
+}
+
 .codeBlock {
     border: 1px solid #dedede;
     border-radius: 8px;

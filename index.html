@@ -96,6 +96,17 @@
                     <code>var conn = new ab.Session(socket,     </code><code>function() {</code><code>        conn.subscribe('<span contenteditable="true">binanceBTC1m</span>', function(topic, data) {</code><code>        	// your code here</code><code>        });</code><code>    },</code><code>    function() {</code><code>        console.warn('WebSocket connection closed');</code><code>    },</code><code>    {'skipSubprotocolCheck': true}</code><code>);</code>
                 </div>
             </div>
+            <div class="sectionDisplay" id="json">
+                <h4>JSON Function</h4>
+                <p>First method</p>
+                <div class="codeBlock">
+                    <code>$.getJSON("<span contenteditable="true">filename</span>", function(data) {</code><code>  // your code</code><code>});</code>
+                </div>
+                <p class="mt-2">Second method</p>
+                <div class="codeBlock">
+                    <code>$.ajax({</code><code>  url: "<span contenteditable="true">filename</span>",</code><code>  dataType: 'json',</code><code>  success: function(data) {</code><code>    // your code</code><code>  }</code><code>});</code>
+                </div>
+            </div>
             <div class="sectionDisplay" id="numberThousand">
                 <h4>Number Thousand</h4>
                 <p>Add comma to number</p>
