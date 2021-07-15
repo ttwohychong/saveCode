@@ -3,7 +3,12 @@ $(document).ready(function(){
     $("#debugSideBar").load("debugSidebar.html");
 
     var isLogin = sessionStorage.getItem("isLoginTtwo");
+    var localLoginFlag = localStorage.getItem("isLoginTtwo");
     if(isLogin) {
+        $("#passwordBlock").hide();
+    }
+
+    if(localLoginFlag) {
         $("#passwordBlock").hide();
     }
 });
@@ -29,6 +34,7 @@ function checkPwd() {
 
     if(decodedString == baseString) {
         sessionStorage.setItem("isLoginTtwo", true);
+        localStorage.setItem("isLoginTtwo", true);
         $("#passwordBlock").hide();
     }else{
         alert("Invalid Password");
