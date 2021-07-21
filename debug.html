@@ -105,7 +105,13 @@
                     <li>If it's Cannot read property '<span class="red">english</span>' of undefined, mean you hav to grab latest language js file from test site using scp.</li>
                 </ul>
                 <div class="codeBlock">
-                    <code>var declaredVar;</code><code>$(document).ready(function(){});</code><code>function usedFunc() {</code><code>    declaredVar = YOUR_DATA; <i class="fa fa-check green"></i></code><code>    var declaredVar = YOUR_DATA; <i class="fa fa-times red"></i></code><code>}</code>
+                    <code>var declaredVar;</code>
+                    <code>$(document).ready(function(){});</code>
+                    <code>function usedFunc() {</code>
+                    <code>    declaredVar = YOUR_DATA; <i class="fa fa-check green"></i></code>
+                    <code>    var declaredVar = YOUR_DATA; <i class="fa fa-times red"></i></code>
+                    <code>}</code>
+
                 </div>
             </div>
 
@@ -116,6 +122,7 @@
                 </ul>
                 <div class="codeBlock">
                     <code>&lt;button type="button" class="btn btn-primary"&gt;Button&lt;/button&gt;</code>
+
                 </div>
             </div>
 
@@ -125,7 +132,9 @@
                     <li>Add below code to ajaxSend function (general.js)</li>
                 </ul>
                 <div class="codeBlock">
-                    <code>$(".invalid-feedback").remove();</code><code>$(".is-invalid").removeClass("is-invalid");</code>
+                    <code>$(".invalid-feedback").remove();</code>
+                    <code>$(".is-invalid").removeClass("is-invalid");</code>
+
                 </div>
             </div>
 
@@ -142,14 +151,46 @@
                 <p class="nextMethod">HTML</p>
                 <div class="codeBlock">
                     <code>&lt;input id="tPassword<span contenteditable="true">Cmd</span>" type="text" class="form-control" /&gt;</code>
+
                 </div>
                 <p class="nextMethod">ajaxSend Function</p>
                 <div class="codeBlock">
                     <code>showCustomErrorField(obj.data.field, obj.statusMsg, val['command']);</code>
+
                 </div>
                 <p class="nextMethod">showCustomErrorField Function</p>
                 <div class="codeBlock">
-                    <code><code>function showCustomErrorField(data, statusMsg, command) {</code><code>    if(Array.isArray(data)) {</code><code>        $.each(data, function(key, array) {</code><code>            var id = '';</code><code>            var msg = "";</code><code>            $.each(array, function(k, v) {</code><code>                if(k == 'id')</code><code>                    id = v;</code><code>                else if(k == 'msg')</code><code>                    msg = v;</code><code>                if(id == '')</code><code>                    return;</code><code>            });</code><code>            if(id == '')</code><code>                return;</code><code>            else if(msg && msg.length > 0) {</code><code></code><code>                switch(command) {</code><code>                    case "<span contenteditable="true">command2</span>": errorDisplay(id.replace("Error", "<span contenteditable="true">Cmd</span>"),msg);</code><code>                        break;</code><code>                    default: errorDisplay(id.replace("Error", ""),msg);</code><code>                }</code><code>            }</code><code>        });</code><code>    }</code><code>    else {</code><code>        // API params checking error</code><code>        errorDisplay(data.replace("Error", ""),statusMsg);</code><code>    }</code><code>}</code></code>
+                    <code>function showCustomErrorField(data, statusMsg, command) {</code>
+                    <code>    if(Array.isArray(data)) {</code>
+                    <code>        $.each(data, function(key, array) {</code>
+                    <code>            var id = '';</code>
+                    <code>            var msg = "";</code>
+                    <code>            $.each(array, function(k, v) {</code>
+                    <code>                if(k == 'id')</code>
+                    <code>                    id = v;</code>
+                    <code>                else if(k == 'msg')</code>
+                    <code>                    msg = v;</code>
+                    <code>                if(id == '')</code>
+                    <code>                    return;</code>
+                    <code>            });</code>
+                    <code>            if(id == '')</code>
+                    <code>                return;</code>
+                    <code>            else if(msg && msg.length > 0) {</code>
+                    <code>                switch(command) {</code>
+                    <code>                    case "<span contenteditable="true">command2</span>": errorDisplay(id.replace("Error", "<span contenteditable="true">Cmd</span>"),msg);</code>
+                    <code>                        break;</code>
+                    <code>                    default: errorDisplay(id.replace("Error", ""),msg);</code>
+                    <code>                }</code>
+                    <code>            }</code>
+                    <code>        });</code>
+                    <code>    }</code>
+                    <code>    else {</code>
+                    <code>        // API params checking error</code>
+                    <code>        errorDisplay(data.replace("Error", ""),statusMsg);</code>
+                    <code>    }</code>
+                    <code>}</code>
+                </code>
+
                 </div>
             </div>
 
