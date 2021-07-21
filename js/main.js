@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#sideBar").load("sidebar.html");
     $("#debugSideBar").load("debugSidebar.html");
+    $("span[contenteditable='true']").attr("spellcheck", "false");
 
     var isLogin = sessionStorage.getItem("isLoginTtwo");
     var localLoginFlag = localStorage.getItem("isLoginTtwo");

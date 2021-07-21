@@ -36,6 +36,19 @@
                     <li>Check data you pass is it same with trello</li>
                     <li>Grab latest language file from server using scp</li>
                 </ol>
+
+                <p>JS Error Map</p>
+                <ul>
+                    <li><a href="#error1">Uncaught SyntaxError: Unexpected identifier</a></li>
+                    <li><a href="#error2">When click button, page no effect (no hang)</a></li>
+                    <li><a href="#error3">Filter not working</a></li>
+                    <li><a href="#error4">When click button page hang, keep show loading icon</a></li>
+                    <li><a href="#error5">After apply numberThousand function, showing NaN.00</a></li>
+                    <li><a href="#error6">Uncaught TypeError: Cannot read property 'variable' of undefined</a></li>
+                    <li><a href="#error7">When click button, run function but immediately refresh page</a></li>
+                    <li><a href="#error8">Error message didn't clear keep duplicate when call api</a></li>
+                    <li><a href="#error9">Same page but backend return two api with same error ID</a></li>
+                </ul>
             </div>
 
             <div class="sectionDisplay firstContent" id="error1">
@@ -79,6 +92,7 @@
                 <ul>
                     <li>Try parseFloat first for number then only apply numberThousand</li>
                     <li>Make sure backend the data you get is not -, is yes, should do a condition if data == '-', number = 0</li>
+                    <li>Check the number that need to parseFloat, if the number applied numberThousand, should use removeComma function then only do calculation. </li>
                 </ul>
             </div>
 
@@ -92,6 +106,50 @@
                 </ul>
                 <div class="codeBlock">
                     <code>var declaredVar;</code><code>$(document).ready(function(){});</code><code>function usedFunc() {</code><code>    declaredVar = YOUR_DATA; <i class="fa fa-check green"></i></code><code>    var declaredVar = YOUR_DATA; <i class="fa fa-times red"></i></code><code>}</code>
+                </div>
+            </div>
+
+            <div class="sectionDisplay" id="error7">
+                <h4>When click button, run function but immediately refresh page</h4>
+                <ul>
+                    <li>Add a type="button" to the button element.</li>
+                </ul>
+                <div class="codeBlock">
+                    <code>&lt;button type="button" class="btn btn-primary"&gt;Button&lt;/button&gt;</code>
+                </div>
+            </div>
+
+            <div class="sectionDisplay" id="error8">
+                <h4>Error message didn't clear keep duplicate when call api</h4>
+                <ul>
+                    <li>Add below code to ajaxSend function (general.js)</li>
+                </ul>
+                <div class="codeBlock">
+                    <code>$(".invalid-feedback").remove();</code><code>$(".is-invalid").removeClass("is-invalid");</code>
+                </div>
+            </div>
+
+            <div class="sectionDisplay" id="error9">
+                <h4>Same page but backend return two api with same error ID</h4>
+                <ul>
+                    <li>Assume it has two api "command1" and "command2" will pass same error id "tPasswordError"</li>
+                </ul>
+                <ol>
+                    <li>HTML: One of the tPassword input should change to "tPasswordCmd" </li>
+                    <li>JS: You should pass the api name to showCustomErrorField function (general.js) [ajaxSend Func]</li>
+                    <li>JS: In showCustomErrorField function, you will need to do a condition. If api equal to command2, the error id should replace to tPasswordCmd</li>
+                </ol>
+                <p class="nextMethod">HTML</p>
+                <div class="codeBlock">
+                    <code>&lt;input id="tPassword<span contenteditable="true">Cmd</span>" type="text" class="form-control" /&gt;</code>
+                </div>
+                <p class="nextMethod">ajaxSend Function</p>
+                <div class="codeBlock">
+                    <code>showCustomErrorField(obj.data.field, obj.statusMsg, val['command']);</code>
+                </div>
+                <p class="nextMethod">showCustomErrorField Function</p>
+                <div class="codeBlock">
+                    <code><code>function showCustomErrorField(data, statusMsg, command) {</code><code>    if(Array.isArray(data)) {</code><code>        $.each(data, function(key, array) {</code><code>            var id = '';</code><code>            var msg = "";</code><code>            $.each(array, function(k, v) {</code><code>                if(k == 'id')</code><code>                    id = v;</code><code>                else if(k == 'msg')</code><code>                    msg = v;</code><code>                if(id == '')</code><code>                    return;</code><code>            });</code><code>            if(id == '')</code><code>                return;</code><code>            else if(msg && msg.length > 0) {</code><code></code><code>                switch(command) {</code><code>                    case "<span contenteditable="true">command2</span>": errorDisplay(id.replace("Error", "<span contenteditable="true">Cmd</span>"),msg);</code><code>                        break;</code><code>                    default: errorDisplay(id.replace("Error", ""),msg);</code><code>                }</code><code>            }</code><code>        });</code><code>    }</code><code>    else {</code><code>        // API params checking error</code><code>        errorDisplay(data.replace("Error", ""),statusMsg);</code><code>    }</code><code>}</code></code>
                 </div>
             </div>
 

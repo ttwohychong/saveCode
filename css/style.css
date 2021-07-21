@@ -11,6 +11,10 @@ code {
     white-space: pre;
 }
 
+a {
+    color: #308fce;
+}
+
 p {
     padding: 0;
     margin: 0;
@@ -108,9 +112,15 @@ tr th:first-child {
 
 span[contenteditable="true"] {
     display: inline-block;
-    min-width: 100px;
-    border-bottom: .5px solid #777;
+    border-bottom: .5px solid rgb(158, 158, 158);
     padding-left: 5px;
+    padding-right: 5px;
+    outline: none;
+}
+
+span[contenteditable="true"]:focus {
+    border-bottom: .5px solid #000;
+    background-color: rgb(220, 255, 220);
 }
 
 .passwordBlock {
@@ -146,8 +156,20 @@ span[contenteditable="true"] {
     color: red;
 }
 
+.imgModal {
+    background-color: transparent;
+    border: none;
+}
+
+.imgModal .close {
+    text-shadow: none;
+    color: #fff;
+    opacity: 1;
+    margin-bottom: 5px;
+}
+
 .bigImg {
-    max-width: 100%;
+    width: 100%;
 }
 
 .updateLog > li {
