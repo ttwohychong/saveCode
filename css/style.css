@@ -175,3 +175,15 @@ span[contenteditable="true"]:focus {
 .updateLog > li {
     margin-bottom: 10px;
 }
+
+.copyBtn {
+    display: block;
+    float: right;
+    margin-right: 15px;
+    margin-top: 10px;
+    color: #aaa;
+}
+
+.copyBtn:hover {
+    color: #308fce;
+}

@@ -21,6 +21,7 @@
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 <p><b>2021/07/21 Updated: </b></p>
                 <ol class="updateLog">
+                    <li>Added copy button to all code block</li>
                     <li>Apply Maintenance</li>
                     <li>Debug Flow added new error
                         <ul>
@@ -36,12 +37,32 @@
                 <p>Method 1</p>
                 <p>Use this method in all page except login.php</p>
                 <div class="codeBlock">
-                    <code>var url             = 'scripts/reqDefault.php';</code><code>var method          = 'POST';</code><code>var debug           = 0;</code><code>var bypassBlocking  = 0;</code><code>var bypassLoading   = 0;</code><code>var formData  = {</code><code>    command    : <span contenteditable="true">command1</span>, //api command name</code><code>    <span contenteditable="true">username</span>: <span contenteditable="true">username</span> //params that required to pass to backend</code><code>};</code><code>var fCallback = loadDefaultListing;</code><code>ajaxSend(url, formData, method, fCallback, debug, bypassBlocking, bypassLoading, 0); // Call backend using this function</code><br><code>function loadDefaultListing(data, message) {} // when function run successfully, will run this function (fCallback function)</code>
+                    <code>var url             = 'scripts/reqDefault.php';</code>
+                    <code>var method          = 'POST';</code>
+                    <code>var debug           = 0;</code>
+                    <code>var bypassBlocking  = 0;</code>
+                    <code>var bypassLoading   = 0;</code>
+                    <code>var formData  = {</code>
+                    <code>    command    : <span contenteditable="true">command1</span>, //api command name</code>
+                    <code>    <span contenteditable="true">username</span>: <span contenteditable="true">username</span> //params that required to pass to backend</code>
+                    <code>};</code>
+                    <code>var fCallback = loadDefaultListing;</code>
+                    <code>ajaxSend(url, formData, method, fCallback, debug, bypassBlocking, bypassLoading, 0); // Call backend using this function</code>
+                    <br>
+                    <code>function loadDefaultListing(data, message) {} // when function run successfully, will run this function (fCallback function)</code>
                 </div>
                 <p class="mt-3">Method 2</p>
                 <p>If method 1 not working, can try this method to call backend</p>
                 <div class="codeBlock">
-                    <code>$.ajax({</code><code>    type     : 'POST', // define the type of HTTP verb we want to use (POST for our form)</code><code>    url      : 'scripts/reqLogin.php', // the url where we want to POST</code><code>    data     : formData, // our data object</code><code>    dataType : 'text', // what type of data do we expect back from the server</code><code>    encode   : true</code><code>}).done(function(data) {</code><code>    var obj = JSON.parse(data); // the data that returns from backend</code><code>});</code>
+                    <code>$.ajax({</code>
+                    <code>    type     : 'POST', // define the type of HTTP verb we want to use (POST for our form)</code>
+                    <code>    url      : 'scripts/reqLogin.php', // the url where we want to POST</code>
+                    <code>    data     : formData, // our data object</code>
+                    <code>    dataType : 'text', // what type of data do we expect back from the server</code>
+                    <code>    encode   : true</code>
+                    <code>}).done(function(data) {</code>
+                    <code>    var obj = JSON.parse(data); // the data that returns from backend</code>
+                    <code>});</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="tableFunction">
@@ -49,12 +70,120 @@
                 <p>Method 1</p>
                 <p>Use this method to build standard table</p>
                 <div class="codeBlock">
-                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code><code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code><code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code><code>var btnArray = {};</code><br><code>var thArray  = Array(</code><code>	"<span contenteditable="true">Created At</span>",</code><code>	"<span contenteditable="true">Username</span>"</code><code>);</code><br><code>var newList = [];</code><code>var arr = data['<span contenteditable="true">listing</span>'];</code><code>if(arr) {</code><code>	$.each(arr, function(k, v){</code><code>		var rebuildData = {</code><code>			<span contenteditable="true">username</span>: <span contenteditable="true">v['username']</span></code><code>		}</code><code>		newList.push(rebuildData);</code><code>	});</code><code>	buildTable(newList, tableId, divId, thArray, btnArray, message, tableNo);</code><code>	pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>}</code>
+                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code>
+                    <code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code>
+                    <code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code>
+                    <code>var btnArray = {};</code>
+                    <br>
+                    <code>var thArray  = Array(</code>
+                    <code>	"<span contenteditable="true">Created At</span>",</code>
+                    <code>	"<span contenteditable="true">Username</span>"</code>
+                    <code>);</code>
+                    <br>
+                    <code>var newList = [];</code>
+                    <code>var arr = data['<span contenteditable="true">listing</span>'];</code>
+                    <code>if(arr) {</code>
+                    <code>	$.each(arr, function(k, v){</code>
+                    <code>		var rebuildData = {</code>
+                    <code>			<span contenteditable="true">username</span>: <span contenteditable="true">v['username']</span></code>
+                    <code>		}</code>
+                    <code>		newList.push(rebuildData);</code>
+                    <code>	});</code>
+                    <code>	buildTable(newList, tableId, divId, thArray, btnArray, message, tableNo);</code>
+                    <code>	pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code>
+                    <code>}</code>
                 </div>
                 <p class="mt-3">Method 2</p>
                 <p>Use this method to build table with sub table</p>
                 <div class="codeBlock">
-                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code><code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code><code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code><code>var btnArray = {};</code><code>var thArray  = Array(</code><code>	"<span contenteditable="true">Created At</span>",</code><code>	"<span contenteditable="true">Username</span>"</code><code>);</code><code>// sub header</code><code>var subthArray  = Array(</code><code>    "<span contenteditable="true">Sub Header 1</span>",</code><code>    "<span contenteditable="true">Sub Header 2</span>",</code><code>);</code><code>if(data['<span contenteditable="true">orderList</span>']){</code><code>    var header = "";</code><code>    var subheader = "";</code><code>    var body = "";</code><code>    $.each(thArray, function(k, v){</code><code>        header += `&lt;th>${v}&lt;/th>`;</code><code>    });</code><code>    $.each(subthArray, function(k, v){</code><code>        subheader += `&lt;th&gt;${v}&lt;/th&gt;`;</code><code>    });</code><code>    $.each(data['<span contenteditable="true">orderList</span>'], function(k, v){</code><code>    	var btnDetails = `&lt;button type="button" class="btn btn-Log showLogBtn"&gt;&lt;/button&gt;`;</code><code>        var log = v['<span contenteditable="true">paymentMethodArr</span>'];</code><code>        if(log && log.length &gt; 0) {</code><code>        	// if has sub table data</code><code>            var logHtml = ""; // declare sub table variable</code><code>            //build sub table content</code><code>            $.each(log, function(k1, v1){</code><code>                logHtml += `</code><code>                    &lt;tr&gt;</code><code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData1</span>']}&lt;/td&gt;</code><code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData2</span>']}&lt;/td&gt;</code><code>                    &lt;/tr&gt;</code><code>                `;</code><code>            });</code><code>            // build table content</code><code>            body += `</code><code>                &lt;tr&gt;</code><code>                    &lt;td&gt;${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code><code>                    &lt;td&gt;${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code><code>                    &lt;td&gt;${btnDetails}&lt;/td></code><code>                &lt;/tr&gt;</code><code>            `;</code><code>            // build sub table</code><code>            body += `</code><code>                &lt;tr class="logTable"&gt;</code><code>                    &lt;td colspan="13"&gt;</code><code>                        &lt;div&gt;</code><code>                            &lt;table class="table"&gt;</code><code>                                &lt;thead&gt;&lt;tr&gt;${subheader}&lt;/tr&gt;&lt;/thead&gt;</code><code>                                &lt;tbody&gt;${logHtml}&lt;/tbody&gt;</code><code>                            &lt;/table&gt;</code><code>                        &lt;/div&gt;</code><code>                    &lt;/td&gt;</code><code>                &lt;/tr&gt;</code><code>            `;</code><code>        }else{</code><code>        	// build table without sub table</code><code>            body += `</code><code>                &lt;tr&gt;</code><code>                    &lt;td>${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code><code>                    &lt;td>${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code><code>                    &lt;td>${btnDetails}&lt;/td&gt;</code><code>                &lt;/tr&gt;</code><code>            `;</code><code>        }</code><code>    });</code><code>    $("#"+divId).html(`</code><code>        &lt;table id="${tableId}" class="table table-striped tableHeadCustom" style="margin-bottom:0"&gt;</code><code>            &lt;thead>&lt;tr&gt;${header}&lt;/tr&gt;&lt;/thead&gt;</code><code>            &lt;tbody&gt;${body}&lt;/tbody&gt;</code><code>        &lt;/table&gt;</code><code>    `);</code><code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code><code>    // log button function</code><code>    $(".showLogBtn").click(function(){</code><code>		var getNextRow = $(this).parent().parent().next();</code><code>		getNextRow.toggleClass("open");</code><code>		$(this).toggleClass("active");</code><code>    });</code><code>} else {</code><code>	// handle no result</code><code>    $('#'+tableId).empty();</code><code>    $('#alertMsg').addClass('alert-success').html('&lt;span&gt;No Result Found&lt;/span&gt;').show();</code><code>}</code>
+                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code>
+                    <code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code>
+                    <code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code>
+                    <code>var btnArray = {};</code>
+                    <code>var thArray  = Array(</code>
+                    <code>	"<span contenteditable="true">Created At</span>",</code>
+                    <code>	"<span contenteditable="true">Username</span>"</code>
+                    <code>);</code>
+                    <code>// sub header</code>
+                    <code>var subthArray  = Array(</code>
+                    <code>    "<span contenteditable="true">Sub Header 1</span>",</code>
+                    <code>    "<span contenteditable="true">Sub Header 2</span>",</code>
+                    <code>);</code>
+                    <code>if(data['<span contenteditable="true">orderList</span>']){</code>
+                    <code>    var header = "";</code>
+                    <code>    var subheader = "";</code>
+                    <code>    var body = "";</code>
+                    <code>    $.each(thArray, function(k, v){</code>
+                    <code>        header += `&lt;th>${v}&lt;/th>`;</code>
+                    <code>    });</code>
+                    <code>    $.each(subthArray, function(k, v){</code>
+                    <code>        subheader += `&lt;th&gt;${v}&lt;/th&gt;`;</code>
+                    <code>    });</code>
+                    <code>    $.each(data['<span contenteditable="true">orderList</span>'], function(k, v){</code>
+                    <code>    	var btnDetails = `&lt;button type="button" class="btn btn-Log showLogBtn"&gt;&lt;/button&gt;`;</code>
+                    <code>        var log = v['<span contenteditable="true">paymentMethodArr</span>'];</code>
+                    <code>        if(log && log.length &gt; 0) {</code>
+                    <code>        	// if has sub table data</code>
+                    <code>            var logHtml = ""; // declare sub table variable</code>
+                    <code>            //build sub table content</code>
+                    <code>            $.each(log, function(k1, v1){</code>
+                    <code>                logHtml += `</code>
+                    <code>                    &lt;tr&gt;</code>
+                    <code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData1</span>']}&lt;/td&gt;</code>
+                    <code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData2</span>']}&lt;/td&gt;</code>
+                    <code>                    &lt;/tr&gt;</code>
+                    <code>                `;</code>
+                    <code>            });</code>
+                    <code>            // build table content</code>
+                    <code>            body += `</code>
+                    <code>                &lt;tr&gt;</code>
+                    <code>                    &lt;td&gt;${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code>
+                    <code>                    &lt;td&gt;${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code>
+                    <code>                    &lt;td&gt;${btnDetails}&lt;/td></code>
+                    <code>                &lt;/tr&gt;</code>
+                    <code>            `;</code>
+                    <code>            // build sub table</code>
+                    <code>            body += `</code>
+                    <code>                &lt;tr class="logTable"&gt;</code>
+                    <code>                    &lt;td colspan="13"&gt;</code>
+                    <code>                        &lt;div&gt;</code>
+                    <code>                            &lt;table class="table"&gt;</code>
+                    <code>                                &lt;thead&gt;&lt;tr&gt;${subheader}&lt;/tr&gt;&lt;/thead&gt;</code>
+                    <code>                                &lt;tbody&gt;${logHtml}&lt;/tbody&gt;</code>
+                    <code>                            &lt;/table&gt;</code>
+                    <code>                        &lt;/div&gt;</code>
+                    <code>                    &lt;/td&gt;</code>
+                    <code>                &lt;/tr&gt;</code>
+                    <code>            `;</code>
+                    <code>        }else{</code>
+                    <code>        	// build table without sub table</code>
+                    <code>            body += `</code>
+                    <code>                &lt;tr&gt;</code>
+                    <code>                    &lt;td>${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code>
+                    <code>                    &lt;td>${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code>
+                    <code>                    &lt;td>${btnDetails}&lt;/td&gt;</code>
+                    <code>                &lt;/tr&gt;</code>
+                    <code>            `;</code>
+                    <code>        }</code>
+                    <code>    });</code>
+                    <code>    $("#"+divId).html(`</code>
+                    <code>        &lt;table id="${tableId}" class="table table-striped tableHeadCustom" style="margin-bottom:0"&gt;</code>
+                    <code>            &lt;thead>&lt;tr&gt;${header}&lt;/tr&gt;&lt;/thead&gt;</code>
+                    <code>            &lt;tbody&gt;${body}&lt;/tbody&gt;</code>
+                    <code>        &lt;/table&gt;</code>
+                    <code>    `);</code>
+                    <code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code>
+                    <code>    // log button function</code>
+                    <code>    $(".showLogBtn").click(function(){</code>
+                    <code>		var getNextRow = $(this).parent().parent().next();</code>
+                    <code>		getNextRow.toggleClass("open");</code>
+                    <code>		$(this).toggleClass("active");</code>
+                    <code>    });</code>
+                    <code>} else {</code>
+                    <code>	// handle no result</code>
+                    <code>    $('#'+tableId).empty();</code>
+                    <code>    $('#alertMsg').addClass('alert-success').html('&lt;span&gt;No Result Found&lt;/span&gt;').show();</code>
+                    <code>}</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="loginSession">
@@ -67,7 +196,9 @@
                 </div>
                 <p class="nextMethod">To loop array from php session array</p>
                 <div class="codeBlock">
-                    <code>&lt;?php foreach($_SESSION["<span contenteditable="true">countryList</span>"] as $value){ ?&gt;</code><code>    &lt;option value="&lt;?php echo $value['<span contenteditable="true">id</span>']; ?&gt;"&gt;&lt;?php echo $value['<span contenteditable="true">display</span>']; ?&gt;&lt;/option&gt;</code><code>&lt;?php } ?&gt;</code>
+                    <code>&lt;?php foreach($_SESSION["<span contenteditable="true">countryList</span>"] as $value){ ?&gt;</code>
+                    <code>    &lt;option value="&lt;?php echo $value['<span contenteditable="true">id</span>']; ?&gt;"&gt;&lt;?php echo $value['<span contenteditable="true">display</span>']; ?&gt;&lt;/option&gt;</code>
+                    <code>&lt;?php } ?&gt;</code>
                 </div>
                 <p class="nextMethod">To display session data</p>
                 <div class="codeBlock">
@@ -85,13 +216,84 @@
                 <p>To upload media</p>
                 <p>You will need to build an object array like this</p>
                 <div class="codeBlock">
-                    <code>reqData: {</code><code>    english: {</code><code>        imgName: "img123.png",</code><code>        imgData: BASE64 Data</code><code>    },</code><code>    chineseSimplified: {</code><code>        imgName: "img456.png",</code><code>        imgData: BASE64 Data</code><code>    }</code><code>}</code>
+                    <code>reqData: {</code>
+                    <code>    english: {</code>
+                    <code>        imgName: "img123.png",</code>
+                    <code>        imgData: BASE64 Data</code>
+                    <code>    },</code>
+                    <code>    chineseSimplified: {</code>
+                    <code>        imgName: "img456.png",</code>
+                    <code>        imgData: BASE64 Data</code>
+                    <code>    }</code>
+                    <code>}</code>
                 </div>
                 <p class="nextMethod">When upload image success, you will get new image name (which is the image url from digital ocean) from backend, use the below code to upload the image to Digital Ocean.</p>
                 <div class="codeBlock">
-                    <code>function submitCallback(data, message) {</code><code>    if(data){</code><code>        $('#modalProcessing').modal('show'); // show image upload in progress modal</code><code>        $.each(data, function (lang, val) {</code><code>            var reqData2 = new FormData();</code><br><code>            if(val['<span contenteditable="true">imgName</span>']){</code><code>                var imagefiles = reqData<span contenteditable="true">[lang]['imgData']</span>;</code><code>                var block = imagefiles.split(";");</code><br><code>                // Get the content type of the image</code><code>                var contentType = block[0].split(":")[1];</code><br><code>                // get the real base64 content of the file</code><code>                var realData = block[1].split(",")[1];</code><br><code>                // // Convert it to a blob to upload</code><code>                var blob = b64toBlob(realData, contentType);</code><br><code>                reqData2.append('imageData', blob);</code><code>                reqData2.append('image', val['imgName']);</code><code>            }</code><br><code>            $.ajax({</code><code>                url: 'scripts/reqUploadCDN.php',</code><code>                type: 'post',</code><code>                data: reqData2,</code><code>                contentType: false,</code><code>                processData: false,</code><code>                async: false,</code><code>                success: function(data){</code><code>                    // success upload image</code><code>                },</code><code>            });</code><code>        });</code><br><code>        $('#modalProcessing').modal('hide'); // show image upload in progress modal</code><br><code>        <span contenteditable="true">uploadVideoSuccess</span>(); // success function</code><code>    }</code><code>}</code>
+                    <code>function submitCallback(data, message) {</code>
+                    <code>    if(data){</code>
+                    <code>        $('#modalProcessing').modal('show'); // show image upload in progress modal</code>
+                    <code>        $.each(data, function (lang, val) {</code>
+                    <code>            var reqData2 = new FormData();</code>
                     <br>
-                    <code>function b64toBlob(b64Data, contentType, sliceSize) {</code><code>    contentType = contentType || '';</code><code>    sliceSize = sliceSize || 512;</code><br><code>    var byteCharacters = atob(b64Data);</code><code>    var byteArrays = [];</code><br><code>    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {</code><code>        var slice = byteCharacters.slice(offset, offset + sliceSize);</code><br><code>        var byteNumbers = new Array(slice.length);</code><code>        for (var i = 0; i < slice.length; i++) {</code><code>            byteNumbers[i] = slice.charCodeAt(i);</code><code>        }</code><br><code>        var byteArray = new Uint8Array(byteNumbers);</code><br><code>        byteArrays.push(byteArray);</code><code>    }</code><br><code>  var blob = new Blob(byteArrays, {type: contentType});</code><code>  return blob;</code><code>}</code>
+                    <code>            if(val['<span contenteditable="true">imgName</span>']){</code>
+                    <code>                var imagefiles = reqData<span contenteditable="true">[lang]['imgData']</span>;</code>
+                    <code>                var block = imagefiles.split(";");</code>
+                    <br>
+                    <code>                // Get the content type of the image</code>
+                    <code>                var contentType = block[0].split(":")[1];</code>
+                    <br>
+                    <code>                // get the real base64 content of the file</code>
+                    <code>                var realData = block[1].split(",")[1];</code>
+                    <br>
+                    <code>                // // Convert it to a blob to upload</code>
+                    <code>                var blob = b64toBlob(realData, contentType);</code>
+                    <br>
+                    <code>                reqData2.append('imageData', blob);</code>
+                    <code>                reqData2.append('image', val['imgName']);</code>
+                    <code>            }</code>
+                    <br>
+                    <code>            $.ajax({</code>
+                    <code>                url: 'scripts/reqUploadCDN.php',</code>
+                    <code>                type: 'post',</code>
+                    <code>                data: reqData2,</code>
+                    <code>                contentType: false,</code>
+                    <code>                processData: false,</code>
+                    <code>                async: false,</code>
+                    <code>                success: function(data){</code>
+                    <code>                    // success upload image</code>
+                    <code>                },</code>
+                    <code>            });</code>
+                    <code>        });</code>
+                    <br>
+                    <code>        $('#modalProcessing').modal('hide'); // show image upload in progress modal</code>
+                    <br>
+                    <code>        <span contenteditable="true">uploadVideoSuccess</span>(); // success function</code>
+                    <code>    }</code>
+                    <code>}</code>
+                    <br>
+                    <code>function b64toBlob(b64Data, contentType, sliceSize) {</code>
+                    <code>    contentType = contentType || '';</code>
+                    <code>    sliceSize = sliceSize || 512;</code>
+                    <br>
+                    <code>    var byteCharacters = atob(b64Data);</code>
+                    <code>    var byteArrays = [];</code>
+                    <br>
+                    <code>    for (var offset = 0; offset < byteCharacters.length; offset += sliceSize) {</code>
+                    <code>        var slice = byteCharacters.slice(offset, offset + sliceSize);</code>
+                    <br>
+                    <code>        var byteNumbers = new Array(slice.length);</code>
+                    <code>        for (var i = 0; i < slice.length; i++) {</code>
+                    <code>            byteNumbers[i] = slice.charCodeAt(i);</code>
+                    <code>        }</code>
+                    <br>
+                    <code>        var byteArray = new Uint8Array(byteNumbers);</code>
+                    <br>
+                    <code>        byteArrays.push(byteArray);</code>
+                    <code>    }</code>
+                    <br>
+                    <code>  var blob = new Blob(byteArrays, {type: contentType});</code>
+                    <code>  return blob;</code>
+                    <code>}</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="socket">
@@ -107,18 +309,36 @@
                 </div>
                 <p class="nextMethod">Third, use this function to grab socket data</p>
                 <div class="codeBlock">
-                    <code>var conn = new ab.Session(socket,     </code><code>function() {</code><code>        conn.subscribe('<span contenteditable="true">binanceBTC1m</span>', function(topic, data) {</code><code>        	// your code here</code><code>        });</code><code>    },</code><code>    function() {</code><code>        console.warn('WebSocket connection closed');</code><code>    },</code><code>    {'skipSubprotocolCheck': true}</code><code>);</code>
+                    <code>var conn = new ab.Session(socket,     </code>
+                    <code>function() {</code>
+                    <code>        conn.subscribe('<span contenteditable="true">binanceBTC1m</span>', function(topic, data) {</code>
+                    <code>        	// your code here</code>
+                    <code>        });</code>
+                    <code>    },</code>
+                    <code>    function() {</code>
+                    <code>        console.warn('WebSocket connection closed');</code>
+                    <code>    },</code>
+                    <code>    {'skipSubprotocolCheck': true}</code>
+                    <code>);</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="json">
                 <h4>JSON Function</h4>
                 <p>First method</p>
                 <div class="codeBlock">
-                    <code>$.getJSON("<span contenteditable="true">filename</span>", function(data) {</code><code>  // your code</code><code>});</code>
+                    <code>$.getJSON("<span contenteditable="true">filename</span>", function(data) {</code>
+                    <code>  // your code</code>
+                    <code>});</code>
                 </div>
                 <p class="nextMethod">Second method</p>
                 <div class="codeBlock">
-                    <code>$.ajax({</code><code>  url: "<span contenteditable="true">filename</span>",</code><code>  dataType: 'json',</code><code>  success: function(data) {</code><code>    // your code</code><code>  }</code><code>});</code>
+                    <code>$.ajax({</code>
+                    <code>  url: "<span contenteditable="true">filename</span>",</code>
+                    <code>  dataType: 'json',</code>
+                    <code>  success: function(data) {</code>
+                    <code>    // your code</code>
+                    <code>  }</code>
+                    <code>});</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="applyMaintenance">
@@ -137,14 +357,21 @@
                     <li>Duplicate maintenance.php to your member folder, tune maintenance page design using login.css</li>
                     <li>config.php add maintenance datetime</li>
                 </ol>
-
                 <p class="nextMethod">Code to apply after include head.php in before login page</p>
                 <div class="codeBlock">
-                    <code>&lt;?php</code><code>    $maintenance = General::checkMaintenance();</code><br><code>    if($maintenance){</code><code>        echo '&lt;script&gt;window.location.href="maintenance.php";&lt;/script&gt;';</code><code>        exit();</code><code>    }</code><code>?&gt;</code>
+                    <code>&lt;?php</code>
+                    <code>    $maintenance = General::checkMaintenance();</code>
+                    <br>
+                    <code>    if($maintenance){</code>
+                    <code>        echo '&lt;script&gt;window.location.href="maintenance.php";&lt;/script&gt;';</code>
+                    <code>        exit();</code>
+                    <code>    }</code>
+                    <code>?&gt;</code>
                 </div>
                 <p class="nextMethod">Config file maintenance datetime format</p>
                 <div class="codeBlock">
-                    <code>"startTs" => "2021-07-09 00:00:00",</code><code>"endTs" => "2021-07-09 19:13:00"</code>
+                    <code>"startTs" => "2021-07-09 00:00:00",</code>
+                    <code>"endTs" => "2021-07-09 19:13:00"</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="numberThousand">
@@ -152,12 +379,60 @@
                 <p>Add comma to number</p>
                 <p>Example: call numberThousand(100000.0800); will get 100,000.0800 (String)</p>
                 <div class="codeBlock">
-                    <code>function numberThousand(num, dec, round) {</code><code>    if(round) {</code><code>        num = parseFloat(num);</code><code>        num.toFixed(dec);</code><code>    }</code><code>    num += '';</code><code>    var splitNumber = num.split('.');</code><code>    var firstNumber = splitNumber[0];</code><code>    var rgx = /(\d+)(\d{3})/;</code><code>    while (rgx.test(firstNumber)) {</code><code>        firstNumber = firstNumber.replace(rgx, '$1' + ',' + '$2');</code><code>    }</code><code>    if (splitNumber[1]) {</code><code>        var secondNumber = splitNumber[1];</code><code>        if(!dec && dec!=0) {</code><code>            dec = secondNumber.length;</code><code>        }</code><code>    } else {</code><code>        var secondNumber = "00000000";</code><code>    }</code><code>    if(!dec) {</code><code>        dec=0;</code><code>    }</code><code>    var splitSecondNumber = (""+secondNumber).split("");</code><code>    if (splitSecondNumber.length < dec) {</code><code>        for (var i = splitNumber[1].length; i < dec; i++) {</code><code>            splitSecondNumber.push("0");</code><code>        }</code><code>    }</code><code>    var decimalNumber = [];</code><code>    $.each(splitSecondNumber, function(k,v){</code><code>        if (k < dec) {</code><code>            var pushTheNumber = v;</code><code>            decimalNumber.push(pushTheNumber);</code><code>        }</code><code>    });</code><code>    var joinSecondNumber = decimalNumber.join("");</code><code>    if (dec == 0) {</code><code>        var actualNumber = firstNumber;</code><code>    } else {</code><code>        var actualNumber = firstNumber + "." + joinSecondNumber;</code><code>    }</code><code>    return actualNumber;</code><code>}</code>
+                    <code>function numberThousand(num, dec, round) {</code>
+                    <code>    if(round) {</code>
+                    <code>        num = parseFloat(num);</code>
+                    <code>        num.toFixed(dec);</code>
+                    <code>    }</code>
+                    <code>    num += '';</code>
+                    <code>    var splitNumber = num.split('.');</code>
+                    <code>    var firstNumber = splitNumber[0];</code>
+                    <code>    var rgx = /(\d+)(\d{3})/;</code>
+                    <code>    while (rgx.test(firstNumber)) {</code>
+                    <code>        firstNumber = firstNumber.replace(rgx, '$1' + ',' + '$2');</code>
+                    <code>    }</code>
+                    <code>    if (splitNumber[1]) {</code>
+                    <code>        var secondNumber = splitNumber[1];</code>
+                    <code>        if(!dec && dec!=0) {</code>
+                    <code>            dec = secondNumber.length;</code>
+                    <code>        }</code>
+                    <code>    } else {</code>
+                    <code>        var secondNumber = "00000000";</code>
+                    <code>    }</code>
+                    <code>    if(!dec) {</code>
+                    <code>        dec=0;</code>
+                    <code>    }</code>
+                    <code>    var splitSecondNumber = (""+secondNumber).split("");</code>
+                    <code>    if (splitSecondNumber.length < dec) {</code>
+                    <code>        for (var i = splitNumber[1].length; i < dec; i++) {</code>
+                    <code>            splitSecondNumber.push("0");</code>
+                    <code>        }</code>
+                    <code>    }</code>
+                    <code>    var decimalNumber = [];</code>
+                    <code>    $.each(splitSecondNumber, function(k,v){</code>
+                    <code>        if (k < dec) {</code>
+                    <code>            var pushTheNumber = v;</code>
+                    <code>            decimalNumber.push(pushTheNumber);</code>
+                    <code>        }</code>
+                    <code>    });</code>
+                    <code>    var joinSecondNumber = decimalNumber.join("");</code>
+                    <code>    if (dec == 0) {</code>
+                    <code>        var actualNumber = firstNumber;</code>
+                    <code>    } else {</code>
+                    <code>        var actualNumber = firstNumber + "." + joinSecondNumber;</code>
+                    <code>    }</code>
+                    <code>    return actualNumber;</code>
+                    <code>}</code>
                 </div>
                 <p class="nextMethod">Remove comma from number</p>
                 <p>Example: call removeComma('100,000.0800'); will get 100000.08 (Float)</p>
                 <div class="codeBlock">
-                    <code>function removeComma(num) {</code><code>  var removed = num.replaceAll(",", "");</code><code>  var res = parseFloat(removed);</code><br><code>  return res;</code><code>}</code>
+                    <code>function removeComma(num) {</code>
+                    <code>  var removed = num.replaceAll(",", "");</code>
+                    <code>  var res = parseFloat(removed);</code>
+                    <br>
+                    <code>  return res;</code>
+                    <code>}</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="arrayFunction">
@@ -171,11 +446,15 @@
                 <p>Method 1: Foreach Loop</p>
                 <p>This method will loop from first array / object item to last</p>
                 <div class="codeBlock">
-                    <code>$.each(<span contenteditable="true">data['list']</span>, function(k,v){</code><code>	// Your Code here</code><code>});</code>
+                    <code>$.each(<span contenteditable="true">data['list']</span>, function(k,v){</code>
+                    <code>	// Your Code here</code>
+                    <code>});</code>
                 </div>
                 <p class="nextMethod">Method 2: For Loop</p>
                 <div class="codeBlock">
-                    <code>for(var i = 0; i < <span contenteditable="true">data['list'].length</span>; i++) {</code><code>	// Your code here</code><code>}</code>
+                    <code>for(var i = 0; i < <span contenteditable="true">data['list'].length</span>; i++) {</code>
+                    <code>	// Your code here</code>
+                    <code>}</code>
                 </div>
                 <p class="nextMethod">Filter Array based on object array properties</p>
                 <div class="codeBlock">
@@ -202,11 +481,29 @@
                 <h4>Conditional Statement</h4>
                 <p>if else and else if</p>
                 <div class="codeBlock">
-                    <code>if (condition1) {</code><code>  //  block of code to be executed if condition1 is true</code><code>} else if (condition2) {</code><code>  //  block of code to be executed if the condition1 is false and condition2 is true</code><code>} else {</code><code>  //  block of code to be executed if the condition1 is false and condition2 is false</code><code>}</code>
+                    <code>if (condition1) {</code>
+                    <code>  //  block of code to be executed if condition1 is true</code>
+                    <code>} else if (condition2) {</code>
+                    <code>  //  block of code to be executed if the condition1 is false and condition2 is true</code>
+                    <code>} else {</code>
+                    <code>  //  block of code to be executed if the condition1 is false and condition2 is false</code>
+                    <code>}</code>
                 </div>
                 <p class="nextMethod">Switch</p>
                 <div class="codeBlock">
-                    <code>switch(num) {</code><code>  case 0: // code block if (num == 0) will run this function</code><code>    break;</code><code>  case 1: // code block if (num == 1) will run this function</code><code>    break;</code><code>  case 2: // code block if (num == 2) will run this function</code><code>    break;</code><code>  case 3: // code block if (num == 3) will run this function</code><code>    break;</code><code>  case 4: // code block if (num == 4) will run this function</code><code>    break;</code><code>  default: // if not fullfil specific expression will run this function</code><code>}</code>
+                    <code>switch(num) {</code>
+                    <code>  case 0: // code block if (num == 0) will run this function</code>
+                    <code>    break;</code>
+                    <code>  case 1: // code block if (num == 1) will run this function</code>
+                    <code>    break;</code>
+                    <code>  case 2: // code block if (num == 2) will run this function</code>
+                    <code>    break;</code>
+                    <code>  case 3: // code block if (num == 3) will run this function</code>
+                    <code>    break;</code>
+                    <code>  case 4: // code block if (num == 4) will run this function</code>
+                    <code>    break;</code>
+                    <code>  default: // if not fullfil specific expression will run this function</code>
+                    <code>}</code>
                 </div>
                 <p class="nextMethod">Single line conditional</p>
                 <p>Format: syntax?true:false</p>
@@ -231,15 +528,30 @@
             <div class="modal-body">
                 <p>Sample Data Result</p>
                 <div class="codeBlock">
-                    <code>object = [</code><code>  '1',</code><code>  '2',</code><code>  '3',</code><code>  '4',</code><code>  '5'</code><code>];</code>
+                    <code>object = [</code>
+                    <code>  '1',</code>
+                    <code>  '2',</code>
+                    <code>  '3',</code>
+                    <code>  '4',</code>
+                    <code>  '5'</code>
+                    <code>];</code>
                 </div>
                 <p class="nextMethod">HTML should build like this</p>
                 <div class="codeBlock">
-                    <code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code><code>&lt;input class="inp form-control" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" value=""&gt;</code>
                 </div>
                 <p class="nextMethod">Function</p>
                 <div class="codeBlock">
-                    <code>var object = [];</code><br><code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code><code>  var value = $(v).val();</code><code>  object.push(value);</code><code>});</code>
+                    <code>var object = [];</code>
+                    <br>
+                    <code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code>
+                    <code>  var value = $(v).val();</code>
+                    <code>  object.push(value);</code>
+                    <code>});</code>
                 </div>
             </div>
           </div>
@@ -258,15 +570,32 @@
             <div class="modal-body">
                 <p>Sample Data Result</p>
                 <div class="codeBlock">
-                    <code>object = {</code><code>  dataKey1: value1,</code><code>  dataKey2: value2,</code><code>  dataKey3: value3,</code><code>  dataKey4: value4,</code><code>  dataKey5: value5</code><code>}</code>
+                    <code>object = {</code>
+                    <code>  dataKey1: value1,</code>
+                    <code>  dataKey2: value2,</code>
+                    <code>  dataKey3: value3,</code>
+                    <code>  dataKey4: value4,</code>
+                    <code>  dataKey5: value5</code>
+                    <code>}</code>
                 </div>
                 <p class="nextMethod">HTML should build like this</p>
                 <div class="codeBlock">
-                    <code>&lt;input class="inp form-control" data-key="dataKey1" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey2" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey3" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey4" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey5" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey1" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey2" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey3" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey4" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey5" value=""&gt;</code>
                 </div>
                 <p class="nextMethod">JS</p>
                 <div class="codeBlock">
-                    <code>var object = {};</code><br><code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code><code>  var dataKey = $(v).attr("data-key");</code><code>  var value = $(v).val();</code><br><code>  object[dataKey] = value;</code><code>});</code>
+                    <code>var object = {};</code>
+                    <br>
+                    <code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code>
+                    <code>  var dataKey = $(v).attr("data-key");</code>
+                    <code>  var value = $(v).val();</code>
+                    <br>
+                    <code>  object[dataKey] = value;</code>
+                    <code>});</code>
                 </div>
             </div>
           </div>
@@ -285,15 +614,35 @@
             <div class="modal-body">
                 <p>Sample Data Result</p>
                 <div class="codeBlock">
-                    <code>object = [</code><code>  {type: "dataKey1", content: "value1"},</code><code>  {type: "dataKey2", content: "value2"},</code><code>  {type: "dataKey3", content: "value3"},</code><code>  {type: "dataKey4", content: "value4"},</code><code>  {type: "dataKey5", content: "value5"},</code><code>]</code>
+                    <code>object = [</code>
+                    <code>  {type: "dataKey1", content: "value1"},</code>
+                    <code>  {type: "dataKey2", content: "value2"},</code>
+                    <code>  {type: "dataKey3", content: "value3"},</code>
+                    <code>  {type: "dataKey4", content: "value4"},</code>
+                    <code>  {type: "dataKey5", content: "value5"},</code>
+                    <code>]</code>
                 </div>
                 <p class="nextMethod">HTML should build like this</p>
                 <div class="codeBlock">
-                    <code>&lt;input class="inp form-control" data-key="dataKey1" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey2" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey3" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey4" value=""&gt;</code><code>&lt;input class="inp form-control" data-key="dataKey5" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey1" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey2" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey3" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey4" value=""&gt;</code>
+                    <code>&lt;input class="inp form-control" data-key="dataKey5" value=""&gt;</code>
                 </div>
                 <p class="nextMethod">JS</p>
                 <div class="codeBlock">
-                    <code>var object = [];</code><br><code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code><code>  var dataKey = $(v).attr("data-key");</code><code>  var value = $(v).val();</code><br><code>  object.push({</code><code>    type: dataKey,</code><code>    content: value</code><code>  });</code><code>});</code>
+                    <code>var object = [];</code>
+                    <br>
+                    <code>$.each(<span contenteditable="true">$(".inp")</span>, function(k,v){</code>
+                    <code>  var dataKey = $(v).attr("data-key");</code>
+                    <code>  var value = $(v).val();</code>
+                    <br>
+                    <code>  object.push({</code>
+                    <code>    type: dataKey,</code>
+                    <code>    content: value</code>
+                    <code>  });</code>
+                    <code>});</code>
                 </div>
             </div>
           </div>
@@ -312,7 +661,13 @@
             <div class="modal-body">
                 <p>Sample Data Result</p>
                 <div class="codeBlock">
-                    <code>&lt;div id="appendHtml"&gt;</code><code>  &lt;div&gt;Display 1&lt;/div&gt;</code><code>  &lt;div&gt;Display 2&lt;/div&gt;</code><code>  &lt;div&gt;Display 3&lt;/div&gt;</code><code>  &lt;div&gt;Display 4&lt;/div&gt;</code><code>  &lt;div&gt;Display 5&lt;/div&gt;</code><code>&lt;/div&gt;</code>
+                    <code>&lt;div id="appendHtml"&gt;</code>
+                    <code>  &lt;div&gt;Display 1&lt;/div&gt;</code>
+                    <code>  &lt;div&gt;Display 2&lt;/div&gt;</code>
+                    <code>  &lt;div&gt;Display 3&lt;/div&gt;</code>
+                    <code>  &lt;div&gt;Display 4&lt;/div&gt;</code>
+                    <code>  &lt;div&gt;Display 5&lt;/div&gt;</code>
+                    <code>&lt;/div&gt;</code>
                 </div>
                 <p class="nextMethod">HTML should build like this</p>
                 <div class="codeBlock">
@@ -320,7 +675,15 @@
                 </div>
                 <p class="nextMethod">JS</p>
                 <div class="codeBlock">
-                    <code>var html = "";</code><br><code>$.each(data['result'], function(k,v){</code><code>    html += `</code><code>      &lt;div&gt;${v['display']}&lt;/div&gt;</code><code>    `;</code><code>});</code><br><code>$("#appendHtml").html(html);</code>
+                    <code>var html = "";</code>
+                    <br>
+                    <code>$.each(data['result'], function(k,v){</code>
+                    <code>    html += `</code>
+                    <code>      &lt;div&gt;${v['display']}&lt;/div&gt;</code>
+                    <code>    `;</code>
+                    <code>});</code>
+                    <br>
+                    <code>$("#appendHtml").html(html);</code>
                 </div>
             </div>
           </div>
