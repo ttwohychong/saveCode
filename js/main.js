@@ -2,7 +2,7 @@ $(document).ready(function(){
     $("#sideBar").load("sidebar.html");
     $("#debugSideBar").load("debugSidebar.html");
     $("span[contenteditable='true']").attr("spellcheck", "false");
-    $(".codeBlock").before(`<a class="copyBtn" href="javascript:;" onclick="copyToClipboard(this)"><i class="fa fa-copy"></i></a>`);
+    $(".codeBlock").before(`<a class="copyBtn" href="javascript:;" onclick="copyToClipboard(this)"><i class="far fa-copy"></i></a>`);
 
     var isLogin = sessionStorage.getItem("isLoginTtwo");
     var localLoginFlag = localStorage.getItem("isLoginTtwo");

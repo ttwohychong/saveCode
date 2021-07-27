@@ -19,10 +19,13 @@
         <div class="bodyContent">
             <div class="sectionDisplay alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <p><b>2021/07/21 Updated: </b></p>
+                <p><b>2021/07/27 Updated: </b></p>
                 <ol class="updateLog">
                     <li>Added copy button to all code block</li>
                     <li>Apply Maintenance</li>
+                    <li>JS Session</li>
+                    <li>Set Cookie</li>
+                    <li>Payment Gateway</li>
                     <li>Debug Flow added new error
                         <ul>
                             <li>When click button, run function but immediately refresh page</li>
@@ -203,6 +206,26 @@
                 <p class="nextMethod">To display session data</p>
                 <div class="codeBlock">
                     <code>&lt;?php echo $_SESSION['<span contenteditable="true">username</span>']; ?&gt;</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="jsSession">
+                <h4>JS Session</h4>
+                <p>To set JS session</p>
+                <p class="red">** If need to set session for object / array, should convert it to String first.</p>
+                <div class="codeBlock">
+                    <code>sessionStorage.setItem("<span contenteditable="true">name</span>", "<span contenteditable="true">content</span>");</code>
+                </div>
+                <p class="nextMethod">To get JS session</p>
+                <div class="codeBlock">
+                    <code>var getSession = sessionStorage.getItem("<span contenteditable="true">name</span>");</code>
+                </div>
+                <p class="nextMethod">To convert object / array to String</p>
+                <div class="codeBlock">
+                    <code>var str = JSON.stringify(<span contenteditable="true">obj</span>);</code>
+                </div>
+                <p class="nextMethod">To convert back String to object / array</p>
+                <div class="codeBlock">
+                    <code>var obj = JSON.parse(<span contenteditable="true">str</span>);</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="doSpaces">
@@ -511,6 +534,42 @@
                     <code>var result = <span contenteditable="true">num==20</span>?"yes":"no";</code>
                 </div>
                 <p>If num equal to 20, result = "yes" else result = "no"</p>
+            </div>
+            <div class="sectionDisplay" id="setCookie">
+                <h4>Set Cookie</h4>
+                <p>Set session data to cookie and if session is cleared when link back from third party payment gateway, set session data back to session</p>
+                <p class="red">** navbar.php / sidebar.php</p>
+                <div class="codeBlock">
+                    <code>&lt;?php</code>
+                    <code>    if($_SESSION['sessionID']=='') {</code>
+                    <code>        $compressedJSON = unserialize($_COOKIE['<span contenteditable="true">cookieName</span>'], ["allowed_classes" => false]);</code>
+                    <code>        $json = gzinflate($compressedJSON);</code>
+                    <code>        $sessionData = json_decode($json, 1);</code>
+                    <code>        foreach($sessionData as $sdata => $svalue) {</code>
+                    <code>            $_SESSION[$sdata] = $svalue;</code>
+                    <code>        }</code>
+                    <code>    }</code>
+                    <code>    else if($_SESSION['sessionID']!="") {</code>
+                    <code>        $sessionData = json_encode($_SESSION);</code>
+                    <code>        $compressedJSON = gzdeflate($sessionData, 9);</code>
+                    <code>        setcookie('<span contenteditable="true">cookieName</span>', serialize($compressedJSON), time()+10800, "/");</code>
+                    <code>    } </code>
+                    <code>?&gt;</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="submitForm">
+                <h4>Submit form and link to payment gateway</h4>
+                <p>If not working should test on test site</p>
+                <div class="codeBlock">
+                    <code>var temp = `</code>
+                    <code>    &lt;form action="<span contenteditable="true">scripts/reqFundIn.php</span>" method="post" id="submitForm"&gt;</code>
+                    <code>        &lt;input type="hidden" name="<span contenteditable="true">value1</span>" value="${<span contenteditable="true">content1</span>}" /&gt;</code>
+                    <code>        &lt;input type="hidden" name="<span contenteditable="true">value2</span>" value="${<span contenteditable="true">content2</span>}" /&gt;</code>
+                    <code>    &lt;/form&gt;`;</code>
+                    <code>$("body").append(temp);</code>
+                    <code>$("#submitForm").submit();</code>
+                    <code>$temp.remove();</code>
+                </div>
             </div>
         </div>
     </div>
