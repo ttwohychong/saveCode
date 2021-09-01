@@ -37,11 +37,11 @@ function copyToClipboard(n) {
     document.execCommand("copy");
     $temp.remove();
 
-    alert("Copied!");
+    Swal.fire('Code copied!')
 }
 
 function checkPwd() {
-    var baseString = 'dDJ3ZUIxOTJteQ==';
+    var baseString = 'd2VidGVhbQ==';
     var enteredPwd = $("#password").val();
     var decodedString = window.btoa(enteredPwd);
 
@@ -50,6 +50,10 @@ function checkPwd() {
         localStorage.setItem("isLoginTtwo", true);
         $("#passwordBlock").hide();
     }else{
-        alert("Invalid Password");
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Wrong Password!',
+        })
     }
 }

@@ -11,28 +11,34 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="js/main.js"></script>
 </head>
 <body>
     <div class="gridContainer">
         <div id="sideBar" class="sideBar"></div>
         <div class="bodyContent">
-            <div class="sectionDisplay alert alert-success alert-dismissible">
+            <!-- <div class="sectionDisplay alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
-                <p><b>2021/07/27 Updated: </b></p>
+            </div> -->
+            <div class="sectionDisplay alert alert-success">
+                <p><b>Before update task to exec, you need to:</b></p>
                 <ol class="updateLog">
-                    <li>Added copy button to all code block</li>
-                    <li>Apply Maintenance</li>
-                    <li>JS Session</li>
-                    <li>Set Cookie</li>
-                    <li>Payment Gateway</li>
-                    <li>Debug Flow added new error
+                    <li>Make sure the function is working</li>
+                    <li>Make sure listing's data fullfiled what exec requested</li>
+                    <li>Make sure all error message displayed</li>
+                    <li>Make sure all conditional statement working well
                         <ul>
-                            <li>When click button, run function but immediately refresh page</li>
-                            <li>Error message didn't clear keep duplicate when call api</li>
-                            <li>Same page but backend return two api with same error ID</li>
+                            <li>eg. if backend returned data then display, if not don't display it or display "no result found"</li>
                         </ul>
                     </li>
+                    <li>Make sure language is plugged in</li>
+                </ol>
+
+                <p><b>2021/09/01 Updated: </b></p>
+                <ol class="updateLog">
+                    <li>Set Cookie (2.0)</li>
+                    <li>Submit form to 3rd party payment gateway</li>
                 </ol>
             </div>
             <div class="sectionDisplay" id="callBackend">
@@ -537,23 +543,28 @@
             </div>
             <div class="sectionDisplay" id="setCookie">
                 <h4>Set Cookie</h4>
-                <p>Set session data to cookie and if session is cleared when link back from third party payment gateway, set session data back to session</p>
-                <p class="red">** navbar.php / sidebar.php</p>
+                <p>regLogin.php</p>
+                <p>In login API, after set all session</p>
+                <div class="codeBlock">
+                    <code>setcookie("<span contenteditable="true">sessionData</span>", json_encode($_SESSION));</code>
+                </div>
+                <p class="nextMethod">When post type = "logout"</p>
+                <div class="codeBlock">
+                    <code>setcookie("<span contenteditable="true">sessionData</span>", "", time() - 3600);</code>
+                </div>
+                <p class="nextMethod">Payment Success page</p>
+                <p>Before include sharejs</p>
                 <div class="codeBlock">
                     <code>&lt;?php</code>
-                    <code>    if($_SESSION['sessionID']=='') {</code>
-                    <code>        $compressedJSON = unserialize($_COOKIE['<span contenteditable="true">cookieName</span>'], ["allowed_classes" => false]);</code>
-                    <code>        $json = gzinflate($compressedJSON);</code>
-                    <code>        $sessionData = json_decode($json, 1);</code>
-                    <code>        foreach($sessionData as $sdata => $svalue) {</code>
-                    <code>            $_SESSION[$sdata] = $svalue;</code>
-                    <code>        }</code>
-                    <code>    }</code>
-                    <code>    else if($_SESSION['sessionID']!="") {</code>
-                    <code>        $sessionData = json_encode($_SESSION);</code>
-                    <code>        $compressedJSON = gzdeflate($sessionData, 9);</code>
-                    <code>        setcookie('<span contenteditable="true">cookieName</span>', serialize($compressedJSON), time()+10800, "/");</code>
-                    <code>    } </code>
+                    <code>  if(isset($_COOKIE['<span contenteditable="true">sessionData</span>'])) {</code>
+                    <code>      $<span contenteditable="true">sessionData</span> = json_decode($_COOKIE['<span contenteditable="true">sessionData</span>']);</code>
+                    <code>      foreach($<span contenteditable="true">sessionData</span> as $sdata => $svalue) {</code>
+                    <code>          if ($sdata != "language") {</code>
+                    <code>              $_SESSION[$sdata] = $svalue;</code>
+                    <code>          }</code>
+                    <code>      }</code>
+                    <code>      $_SESSION["sessionTimeOut"] = time();</code>
+                    <code>  }</code>
                     <code>?&gt;</code>
                 </div>
             </div>
