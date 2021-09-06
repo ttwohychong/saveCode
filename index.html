@@ -35,10 +35,11 @@
                     <li>Make sure language is plugged in</li>
                 </ol>
 
-                <p><b>2021/09/01 Updated: </b></p>
+                <p><b>2021/09/06 Updated: </b></p>
                 <ol class="updateLog">
                     <li>Set Cookie (2.0)</li>
                     <li>Submit form to 3rd party payment gateway</li>
+                    <li>Stay login function</li>
                 </ol>
             </div>
             <div class="sectionDisplay" id="callBackend">
@@ -580,6 +581,70 @@
                     <code>$("body").append(temp);</code>
                     <code>$("#submitForm").submit();</code>
                     <code>$temp.remove();</code>
+                </div>
+            </div>
+            <div class="sectionDisplay" id="stayLogin">
+                <h4>Stay login Function</h4>
+                <p>reqDefault.php</p>
+                <p>Add this to all api after $result = $post->curl($command, $params);</p>
+                <div class="codeBlock">
+                    <code>$result = json_decode($result, true);</code>
+                    <code>if ($result['sessionData']['newSessionID']) {</code>
+                    <code>	$_SESSION["sessionID"] = $result['sessionData']['newSessionID'];</code>
+                    <code>	$_SESSION["sessionExpireTime"] = $result['sessionData']['timeOut'];</code>
+                    <code>}</code>
+                    <code>if ($result["code"] == 5){</code>
+                    <code>	setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
+                    <code>}</code>
+                    <code>$result = json_encode($result);</code>
+                </div>
+                <p class="nextMethod">reqLogin.php</p>
+                <p>MemberLogin api</p>
+                <div class="codeBlock">
+                    <code>$marcaje      = $result['data']['marcaje'];</code>
+                    <code>$marcajeTK    = $result['data']['marcajeTK'];</code>
+                    <code>$expiredTS    = $result['data']['expiredTS'];</code>
+
+                    <code>$_SESSION["marcaje"] = $marcaje;</code>
+                    <code>$_SESSION["marcajeTK"] = $marcajeTK;</code>
+                    <code>$_SESSION["expiredTS"] = $expiredTS;</code>
+
+                    <code>if($result['data']['marcaje'] && $result['data']['marcajeTK']){</code>
+                    <code>$setlogincookie = array(</code>
+                    <code>  'marcaje' => $marcaje,</code>
+                    <code>  'marcajeTK' => $marcajeTK</code>
+                    <code>);</code>
+
+                    <code>setcookie("<span contenteditable="true">marcajeData</span>", json_encode($setlogincookie), $expiredTS,"/",NULL,TRUE,TRUE);</code>
+                    <code>}</code>
+
+                    <code>if ($result["code"] == 5){</code>
+                    <code>  setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
+                    <code>}</code>
+                </div>
+                <p class="nextMethod">$_POST['type'] == "logout"</p>
+                <p>in this condition add clear stay login cookie</p>
+                <div class="codeBlock">
+                    <code>if ($result["code"] == 5){</code>
+                    <code>  setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
+                    <code>}</code>
+                </div>
+                <p class="nextMethod">general.js</p>
+                <p>error handler add new code straight redirect login.php</p>
+                <div class="codeBlock">
+                    <code>case 5:</code>
+                    <code>	window.location.href = 'login.php';</code>
+                    <code>	break;</code>
+                </div>
+                <p class="nextMethod">sharejs.php</p>
+                <p>When session id == "", should straight redirect to login page instead of pop up no permission modal.</p>
+                <div class="codeBlock">
+                    <code>if(sessionID == '') {</code>
+                    <code>	// No access token, thus don't allow to call backend</code>
+                    <code>	window.ajaxEnabled = false;</code>
+                    <code>	window.location.href = "login.php";</code>
+                    <code>	return true;</code>
+                    <code>}</code>
                 </div>
             </div>
         </div>
