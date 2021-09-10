@@ -592,8 +592,6 @@
                     <code>if ($result['sessionData']['newSessionID']) {</code>
                     <code>	$_SESSION["sessionID"] = $result['sessionData']['newSessionID'];</code>
                     <code>	$_SESSION["sessionExpireTime"] = $result['sessionData']['timeOut'];</code>
-                    <code>} else {</code>
-                    <code>	setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
                     <code>} </code>
                     <code>if ($result["code"] == 5 || $result["code"] == 3){</code>
                     <code>	setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
@@ -612,12 +610,14 @@
                     <code>$_SESSION["expiredTS"] = $expiredTS;</code>
 
                     <code>if($result['data']['marcaje'] && $result['data']['marcajeTK']){</code>
-                    <code>$setlogincookie = array(</code>
-                    <code>  'marcaje' => $marcaje,</code>
-                    <code>  'marcajeTK' => $marcajeTK</code>
-                    <code>);</code>
+                    <code>  $setlogincookie = array(</code>
+                    <code>    'marcaje' => $marcaje,</code>
+                    <code>    'marcajeTK' => $marcajeTK</code>
+                    <code>  );</code>
 
-                    <code>setcookie("<span contenteditable="true">marcajeData</span>", json_encode($setlogincookie), $expiredTS,"/",NULL,TRUE,TRUE);</code>
+                    <code>  setcookie("<span contenteditable="true">marcajeData</span>", json_encode($setlogincookie), $expiredTS,"/",NULL,TRUE,TRUE);</code>
+                    <code>} else {</code>
+                    <code>	setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
                     <code>}</code>
 
                     <code>if ($result["code"] == 5 || $result["code"] == 3){</code>
