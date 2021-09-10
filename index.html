@@ -592,8 +592,10 @@
                     <code>if ($result['sessionData']['newSessionID']) {</code>
                     <code>	$_SESSION["sessionID"] = $result['sessionData']['newSessionID'];</code>
                     <code>	$_SESSION["sessionExpireTime"] = $result['sessionData']['timeOut'];</code>
-                    <code>}</code>
-                    <code>if ($result["code"] == 5){</code>
+                    <code>} else {</code>
+                    <code>	setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
+                    <code>} </code>
+                    <code>if ($result["code"] == 5 || $result["code"] == 3){</code>
                     <code>	setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
                     <code>}</code>
                     <code>$result = json_encode($result);</code>
@@ -618,14 +620,14 @@
                     <code>setcookie("<span contenteditable="true">marcajeData</span>", json_encode($setlogincookie), $expiredTS,"/",NULL,TRUE,TRUE);</code>
                     <code>}</code>
 
-                    <code>if ($result["code"] == 5){</code>
+                    <code>if ($result["code"] == 5 || $result["code"] == 3){</code>
                     <code>  setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
                     <code>}</code>
                 </div>
                 <p class="nextMethod">$_POST['type'] == "logout"</p>
                 <p>in this condition add clear stay login cookie</p>
                 <div class="codeBlock">
-                    <code>if ($result["code"] == 5){</code>
+                    <code>if ($result["code"] == 5 || $result["code"] == 3){</code>
                     <code>  setcookie("<span contenteditable="true">marcajeData</span>", "", time() - 3600, "/",NULL,TRUE,TRUE);</code>
                     <code>}</code>
                 </div>
