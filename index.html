@@ -35,11 +35,10 @@
                     <li>Make sure language is plugged in</li>
                 </ol>
 
-                <p><b>2021/09/06 Updated: </b></p>
+                <p><b>2021/11/22 Updated: </b></p>
                 <ol class="updateLog">
-                    <li>Set Cookie (2.0)</li>
-                    <li>Submit form to 3rd party payment gateway</li>
-                    <li>Stay login function</li>
+                    <li>Connect to socket using JS method (Socket Function Method 2) </li>
+                    <li>Date function</li>
                 </ol>
             </div>
             <div class="sectionDisplay" id="callBackend">
@@ -328,6 +327,7 @@
             </div>
             <div class="sectionDisplay" id="socket">
                 <h4>Socket Function</h4>
+                <p><b>Method 1</b></p>
                 <p><a href="socket.php" download>Download Me</a></p>
                 <p>First, include socket.php in the page you need apply socket function</p>
                 <div class="codeBlock">
@@ -350,6 +350,42 @@
                     <code>    },</code>
                     <code>    {'skipSubprotocolCheck': true}</code>
                     <code>);</code>
+                </div>
+                <p class="nextMethod"><b>Method 2</b></p>
+                <p><a href="socket.io.js" download>Download Me</a></p>
+                <p>Include socket.io.js in the page you need apply socket function</p>
+                <p class="text-danger">** If all page need should include in sharejs</p>
+                <div class="codeBlock">
+                    <code>&lt;script src="js/socket.io.js"&gt;&lt;/script&gt;</code>
+                </div>
+                <p class="nextMethod">Declare socket</p>
+                <div class="codeBlock">
+                    <code>var socket = io("&lt;?php echo $config['socketUrl'];?&gt;",{secure:true});</code>
+                    <code>var socketChannel = '<span contenteditable="true">channelName</span>';</code>
+                </div>
+                <p class="nextMethod">Connect to socket channel</p>
+                <div class="codeBlock">
+                    <code>socket.emit("subscribe", socketChannel);</code>
+                </div>
+                <p class="nextMethod">To get socket data</p>
+                <div class="codeBlock">
+                    <code>socket.on('chat', function(data) {</code>
+                    <code>    //code here</code>
+                    <code>});</code>
+                </div>
+                <p class="nextMethod">Pass data to socket</p>
+                <div class="codeBlock">
+                    <code>var passData = {</code>
+                    <code>    <span contenteditable="true">username</span> : <span contenteditable="true">"test"</span></code>
+                    <code>};</code>
+                    <code>passData = JSON.stringify(passData);</code>
+                    <code>socket.emit("chat", socketChannel, passData);</code>
+                </div>
+                <p class="nextMethod">Disconnect channel before leave page</p>
+                <div class="codeBlock">
+                    <code>window.addEventListener('unload', function(event) {</code>
+                    <code>    socket.emit("unsubscribe", socketChannel);</code>
+                    <code>});</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="json">
@@ -541,6 +577,47 @@
                     <code>var result = <span contenteditable="true">num==20</span>?"yes":"no";</code>
                 </div>
                 <p>If num equal to 20, result = "yes" else result = "no"</p>
+            </div>
+            <div class="sectionDisplay" id="dateFunc">
+                <h4>Date Time Function</h4>
+                <p>To change date to timestamp format</p>
+                <p class="text-danger">** Date should in DD/MM/YYYY format</p>
+                <div class="codeBlock">
+                    <code>var getDate = $("<span contenteditable="true">#getDate</span>").val();</code>
+                    <code>getDate = getDate==""?"":dateToTimestamp(getDate);</code>
+                </div>
+                <p class="nextMethod">Count down timer based on backend timestamp</p>
+                <div class="codeBlock">
+                    <code>var endTime = timestamp * 1000;</code>
+                    <code>var now = new Date().getTime();</code>
+                    <code>var distance = endTime - now;</code>
+                    <code></code>
+                    <code>var x = setInterval(function() {</code>
+                    <code>	var days = Math.floor(distance / (1000 * 60 * 60 * 24));</code>
+                    <code>	var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));</code>
+                    <code>	var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));</code>
+                    <code>	var seconds = Math.floor((distance % (1000 * 60)) / 1000);</code>
+                    <code></code>
+                    <code>	if(hours < 10){</code>
+                    <code>		hours = '0'+hours;</code>
+                    <code>	}</code>
+                    <code>	if(minutes < 10){</code>
+                    <code>		minutes = '0'+minutes;</code>
+                    <code>	}</code>
+                    <code>	if(seconds < 10){</code>
+                    <code>		seconds = '0'+seconds;</code>
+                    <code>	}</code>
+                    <code></code>
+                    <code>	$('<span contenteditable="true">#countDown</span>').text(hours + ":"+ minutes + ":" + seconds);</code>
+                    <code></code>
+                    <code>	distance -= 1;</code>
+                    <code></code>
+                    <code>	if (distance < 0) {</code>
+                    <code>		clearInterval(x);</code>
+                    <code>		// countdown end</code>
+                    <code>	}</code>
+                    <code>}, 1000);</code>
+                </div>
             </div>
             <div class="sectionDisplay" id="setCookie">
                 <h4>Set Cookie</h4>
