@@ -39,6 +39,7 @@
                 <ol class="updateLog">
                     <li>Build table method 2 (build table with sub table)</li>
                     <li>Add windows setup instructions</li>
+                    <li>Get SSH Key Instruction</li>
                 </ol>
             </div>
             <div class="sectionDisplay" id="callBackend">
@@ -853,6 +854,33 @@
                     <br>
                     <code>$("#appendHtml").html(html);</code>
                 </div>
+            </div>
+          </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="sshKeyModal">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">How to get your SSH Key</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <ol>
+                    <li>open git bash</li>
+                    <li>type "ssh-keygen"
+                        <ol>
+                            <li>will ask u save sshkey at whr, press enter</li>
+                            <li>type password</li>
+                            <li>retype password</li>
+                            <li>done</li>
+                        </ol>
+                    </li>
+                    <li>type "cat .ssh/id_rsa.pub", get your ssh key</li>
+                </ol>
             </div>
           </div>
         </div>
