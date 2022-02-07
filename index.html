@@ -37,8 +37,8 @@
 
                 <p><b>2021/11/22 Updated: </b></p>
                 <ol class="updateLog">
-                    <li>Connect to socket using JS method (Socket Function Method 2) </li>
-                    <li>Date function</li>
+                    <li>Build table method 2 (build table with sub table)</li>
+                    <li>Add windows setup instructions</li>
                 </ol>
             </div>
             <div class="sectionDisplay" id="callBackend">
@@ -104,95 +104,49 @@
                 </div>
                 <p class="mt-3">Method 2</p>
                 <p>Use this method to build table with sub table</p>
+                <p>Before document ready</p>
                 <div class="codeBlock">
-                    <code>var divId    = '<span contenteditable="true">portfolioDiv</span>';</code>
-                    <code>var tableId  = '<span contenteditable="true">portfolioTable</span>';</code>
-                    <code>var pagerId  = '<span contenteditable="true">pagerList</span>';</code>
-                    <code>var btnArray = {};</code>
                     <code>var thArray  = Array(</code>
-                    <code>	"<span contenteditable="true">Created At</span>",</code>
-                    <code>	"<span contenteditable="true">Username</span>"</code>
+                    <code>    "<span contenteditable="true">Distribution Date</span>",</code>
+                    <code>    "<span contenteditable="true">Amount</span>",</code>
+                    <code>    "<span contenteditable="true">Created By</span>"</code>
                     <code>);</code>
-                    <code>// sub header</code>
-                    <code>var subthArray  = Array(</code>
-                    <code>    "<span contenteditable="true">Sub Header 1</span>",</code>
-                    <code>    "<span contenteditable="true">Sub Header 2</span>",</code>
+                    <br>
+                    <code>// sub table header</code>
+                    <code>var subThArray  = Array(</code>
+                    <code>    "<span contenteditable="true">Distribution Date</span>",</code>
+                    <code>    "<span contenteditable="true">Amount</span>",</code>
+                    <code>    "<span contenteditable="true">Created By</span>"</code>
                     <code>);</code>
-                    <code>if(data['<span contenteditable="true">orderList</span>']){</code>
-                    <code>    var header = "";</code>
-                    <code>    var subheader = "";</code>
-                    <code>    var body = "";</code>
-                    <code>    $.each(thArray, function(k, v){</code>
-                    <code>        header += `&lt;th>${v}&lt;/th>`;</code>
+                    <br>
+                    <code>// sub table data key and type</code>
+                    <code>var subTableKey = Array(</code>
+                    <code>    {key: "<span contenteditable="true">active_date</span>", type: "text"},</code>
+                    <code>    {key: "<span contenteditable="true">amount</span>", type: "number"}, // type number will float right</code>
+                    <code>    {key: "<span contenteditable="true">created_by</span>", type: "text"}</code>
+                    <code>);</code>
+                </div>
+                <p>In loadDefaultListing</p>
+                <div class="codeBlock">
+                    <code>var tableNo;</code>
+                    <code>var list = data.<span contenteditable="true">bankAccList</span>;</code>
+
+                    <code>if (list) {</code>
+                    <code>    var newData = [];</code>
+
+                    <code>    $.each(list, function (k, v) {</code>
+
+                    <code>        var rebuild = {</code>
+                    <code>            <span contenteditable="true">active_date</span>: v['<span contenteditable="true">active_date</span>'],</code>
+                    <code>            subTableData: v['<span contenteditable="true">log</span>']  //sub table data</code>
+                    <code>        };</code>
+
+                    <code>        newData.push(rebuild);</code>
                     <code>    });</code>
-                    <code>    $.each(subthArray, function(k, v){</code>
-                    <code>        subheader += `&lt;th&gt;${v}&lt;/th&gt;`;</code>
-                    <code>    });</code>
-                    <code>    $.each(data['<span contenteditable="true">orderList</span>'], function(k, v){</code>
-                    <code>    	var btnDetails = `&lt;button type="button" class="btn btn-Log showLogBtn"&gt;&lt;/button&gt;`;</code>
-                    <code>        var log = v['<span contenteditable="true">paymentMethodArr</span>'];</code>
-                    <code>        if(log && log.length &gt; 0) {</code>
-                    <code>        	// if has sub table data</code>
-                    <code>            var logHtml = ""; // declare sub table variable</code>
-                    <code>            //build sub table content</code>
-                    <code>            $.each(log, function(k1, v1){</code>
-                    <code>                logHtml += `</code>
-                    <code>                    &lt;tr&gt;</code>
-                    <code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData1</span>']}&lt;/td&gt;</code>
-                    <code>                        &lt;td>${v1['<span contenteditable="true">subHeaderData2</span>']}&lt;/td&gt;</code>
-                    <code>                    &lt;/tr&gt;</code>
-                    <code>                `;</code>
-                    <code>            });</code>
-                    <code>            // build table content</code>
-                    <code>            body += `</code>
-                    <code>                &lt;tr&gt;</code>
-                    <code>                    &lt;td&gt;${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code>
-                    <code>                    &lt;td&gt;${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code>
-                    <code>                    &lt;td&gt;${btnDetails}&lt;/td></code>
-                    <code>                &lt;/tr&gt;</code>
-                    <code>            `;</code>
-                    <code>            // build sub table</code>
-                    <code>            body += `</code>
-                    <code>                &lt;tr class="logTable"&gt;</code>
-                    <code>                    &lt;td colspan="13"&gt;</code>
-                    <code>                        &lt;div&gt;</code>
-                    <code>                            &lt;table class="table"&gt;</code>
-                    <code>                                &lt;thead&gt;&lt;tr&gt;${subheader}&lt;/tr&gt;&lt;/thead&gt;</code>
-                    <code>                                &lt;tbody&gt;${logHtml}&lt;/tbody&gt;</code>
-                    <code>                            &lt;/table&gt;</code>
-                    <code>                        &lt;/div&gt;</code>
-                    <code>                    &lt;/td&gt;</code>
-                    <code>                &lt;/tr&gt;</code>
-                    <code>            `;</code>
-                    <code>        }else{</code>
-                    <code>        	// build table without sub table</code>
-                    <code>            body += `</code>
-                    <code>                &lt;tr&gt;</code>
-                    <code>                    &lt;td>${v['<span contenteditable="true">created_at</span>']}&lt;/td&gt;</code>
-                    <code>                    &lt;td>${v['<span contenteditable="true">username</span>']}&lt;/td&gt;</code>
-                    <code>                    &lt;td>${btnDetails}&lt;/td&gt;</code>
-                    <code>                &lt;/tr&gt;</code>
-                    <code>            `;</code>
-                    <code>        }</code>
-                    <code>    });</code>
-                    <code>    $("#"+divId).html(`</code>
-                    <code>        &lt;table id="${tableId}" class="table table-striped tableHeadCustom" style="margin-bottom:0"&gt;</code>
-                    <code>            &lt;thead>&lt;tr&gt;${header}&lt;/tr&gt;&lt;/thead&gt;</code>
-                    <code>            &lt;tbody&gt;${body}&lt;/tbody&gt;</code>
-                    <code>        &lt;/table&gt;</code>
-                    <code>    `);</code>
-                    <code>    pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code>
-                    <code>    // log button function</code>
-                    <code>    $(".showLogBtn").click(function(){</code>
-                    <code>		var getNextRow = $(this).parent().parent().next();</code>
-                    <code>		getNextRow.toggleClass("open");</code>
-                    <code>		$(this).toggleClass("active");</code>
-                    <code>    });</code>
-                    <code>} else {</code>
-                    <code>	// handle no result</code>
-                    <code>    $('#'+tableId).empty();</code>
-                    <code>    $('#alertMsg').addClass('alert-success').html('&lt;span&gt;No Result Found&lt;/span&gt;').show();</code>
                     <code>}</code>
+
+                    <code>buildTableWithSubTable(newData, tableId, divId, thArray, subThArray, subTableKey, message, tableNo);</code>
+                    <code>pagination(pagerId, data.pageNumber, data.totalPage, data.totalRecord, data.numRecord);</code>
                 </div>
             </div>
             <div class="sectionDisplay" id="loginSession">

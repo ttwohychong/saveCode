@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="gridContainer wrap">
+        <div class="bodyContent">
+            <div class="sectionDisplay">
+                <a href="index.html" class="backBtn"><i class="fa fa-arrow-left"></i> Back</a>
+            </div>
+            <div class="sectionDisplay">
+                <h4>1.0 Software needed</h4>
+                <ol>
+                    <li>
+                        <p>Subversion for Windows</p>
+                        <p><a href="https://sourceforge.net/projects/win32svn" target="_blank">https://sourceforge.net/projects/win32svn</a></p>
+                    </li>
+                    <li>
+                        <p>OpenVPN for Windows</p>
+                        <p><a href="https://openvpn.net/index.php/open-source/downloads.html" target="_blank">https://openvpn.net/index.php/open-source/downloads.html</a></p>
+                    </li>
+                    <li>
+                        <p>Microsoft visual C++ 2015</p>
+                        <p><a href="https://www.microsoft.com/en-us/download/details.aspx?id=52685" target="_blank">https://www.microsoft.com/en-us/download/details.aspx?id=52685</a></p>
+                    </li>
+                    <li>
+                        <p>Apache24 (WEB TEAM version) (Standard Platform)</p>
+                        <p><a href="https://drive.google.com/file/d/1uD6cmFymTX46LpMDU-H8YYCg1iHYLpii/view?usp=sharing" target="_blank">https://drive.google.com/file/d/1uD6cmFymTX46LpMDU-H8YYCg1iHYLpii/view?usp=sharing</a></p>
+                    </li>
+                    <li>
+                        <p>PHP (WEB TEAM version) (Standard Platform)</p>
+                        <p><a href="https://drive.google.com/file/d/1yng5dsZhAq_K3ggyUOD480OeTto0tdXN/view?usp=sharing" target="_blank">https://drive.google.com/file/d/1yng5dsZhAq_K3ggyUOD480OeTto0tdXN/view?usp=sharing</a></p>
+                    </li>
+                    <li>
+                        <p>Git Bash</p>
+                        <p><a href="https://gitforwindows.org/" target="_blank">https://gitforwindows.org/</a></p>
+                    </li>
+                    <li>
+                        <p>Sublimes for Windows</p>
+                        <p><a href="https://www.sublimetext.com/" target="_blank">https://www.sublimetext.com/</a></p>
+                    </li>
+                    <li>
+                        <p>Sublimes merge</p>
+                        <p><a href="https://www.sublimemerge.com/" target="_blank">https://www.sublimemerge.com/</a></p>
+                    </li>
+                </ol>
+
+                <h4 class="mt-5">Installation Procedure</h4>
+                <ol>
+                    <li>Download apache and extract it</li>
+                    <li>Move the apache24 folder to your C: drive.</li>
+                    <li>Download Microsoft visual C++. Download only the file that has the same bit for the laptop.
+                        <ul>
+                            <li>64 bit = x64</li>
+                            <li>32 bit = x86</li>
+                        </ul>
+                    </li>
+                    <li>After downloading Microsoft Visual C++ , double click on it to do the installation.</li>
+                    <li>Launch CMD as administrator</li>
+                    <li>Type “C:\apache24\bin\httpd -k install” . ( If there is error mentioning you do not have any specific dll file , download microsoft visual C++ 2012/2015 should be able to solve it. )</li>
+                    <li>Right click on the Window Button and open System.</li>
+                    <li>Go “Advanced System Setting” > “Advance” Tab > “Environment Valuables”</li>
+                    <li>Go to “Path” Under “System Variable”.</li>
+                    <li>Add these new variable /file path
+                        <ul>
+                            <li>C:\php</li>
+                            <li>C:\Apache24\</li>
+                            <li>C:\Apache24\bin</li>
+                        </ul>
+                    </li>
+                    <li>Restart laptop and make sure apache starts automatically.</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="backToTop"><i class="fa fa-arrow-up"></i></a>
+
+    <div class="passwordBlock" id="passwordBlock">
+        <div class="passwordWrap">
+            <input type="password" id="password" class="form-control" placeholder="Password">
+            <button id="submit" type="button" class="btn btn-success ml-1"><i class="fa fa-arrow-right"></i></button>
+        </div>
+    </div>
+</body>
+</html>
