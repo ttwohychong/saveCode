@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="gridContainer wrap">
+        <div id="vueSideBar" class="sideBar"></div>
+        <div class="bodyContent">
+            <div class="sectionDisplay alert alert-success">
+                <p class="mb-3"><b>2022/02/08 Updated: </b></p>
+                <ol class="updateLog">
+                    <li>Setup</li>
+                    <li>Sample Template</li>
+                    <li>Call API function</li>
+                    <li>Build Table function</li>
+                </ol>
+            </div>
+            <div id="setup" class="sectionDisplay">
+                <h4>Setup</h4>
+                <h5>Install Vue CLI</h5>
+                <ol>
+                    <li>Open cmd</li>
+                    <li>
+                        <div class="codeBlock">
+                            <code>npm install -g @vue/cli</code>
+                        </div>
+                    </li>
+                </ol>
+                <h5>Checkout vue base project</h5>
+                <ol>
+                    <li>Open cmd</li>
+                    <li>cd to member folder</li>
+                    <li>
+                        <div class="codeBlock">
+                            <code>npm install</code>
+                        </div>
+                    </li>
+                    <li class="mt-1">
+                        <div class="codeBlock">
+                            <code>npm run dev</code>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+            <div id="pageTemplate" class="sectionDisplay">
+                <h4>Page Template</h4>
+                <p>Sample page template for vue</p>
+                <p>For vue official documentation <a href="https://v2.vuejs.org/v2/guide/index.html" target="_blank">Click me</a></p>
+                <div class="codeBlock">
+                    <div data-desc="Component template should contain exactly one root element. Display data using {{VARIABLE_NAME}}. You can use the v-model directive to create two-way data bindings on form input, textarea, and select elements.">
+                        <code>&lt;template&gt;</code>
+                        <code>  &lt;div&gt;</code>
+                        <code>    &lt;HelloWorld msg="Welcome to Your Vue.js App"/&gt;</code><br>
+                        <code>    &lt;div&gt;{{message}}&lt;/div&gt;</code><br>
+                        <code>    &lt;div @click="sampleFunction"&gt;Use @click for click function, @ is shorthand of v-on&lt;/div&gt;</code><br>
+                        <code>    &lt;div v-if="showBlock"&gt;if showBlock == true then show this block&lt;/div&gt;</code><br>
+                        <code>    &lt;div :data-name="name"&gt;In this case data-name = "abc" (based on variable declared in data), : is shorthand for v-bind&lt;/div&gt;</code><br>
+                        <code>    &lt;div data-name="name"&gt;If data-name didn't bind with any variable using :, it's a String, so in this case data-name="name"&lt;/div&gt;</code><br>
+                        <code>    &lt;input v-model="textInp" /&gt;</code><br>
+                        <code>  &lt;/div&gt;</code>
+                        <code>&lt;/template&gt;</code>
+                    </div>
+                    <br>
+                    <code>&lt;script&gt;</code>
+                    <code>// @ is an alias to /src</code>
+                    <div data-desc="Import component">
+                        <code>import HelloWorld from '@/components/HelloWorld.vue'</code>
+                    </div>
+
+                    <code>export default {</code>
+                    <code>  name: 'Home',</code>
+                    <div data-desc="Declare variable here, to use data in template: {{VARIABLE_NAME}}, to use data in script: this.VARIABLE_NAME">
+                        <code>  data () {</code>
+                        <code>    return {</code>
+                        <code>        message: "Test",</code>
+                        <code>        message2: "Test 2",</code>
+                        <code>        showBlock: false,</code>
+                        <code>        name: "abc",</code>
+                        <code>        textInp: "abc",</code>
+                        <code>    }</code>
+                        <code>  },</code>
+                    </div>
+                    <div data-desc="Return reactive data">
+                        <code>  computed: {},</code>
+                    </div>
+                    <div data-desc="Declare component for usage">
+                        <code>  components: {</code>
+                        <code>    HelloWorld</code>
+                        <code>  },</code>
+                    </div>
+                    <code>  created: function(){</code>
+                    <code>    // window onload</code>
+                    <code>  },</code>
+                    <code>  mounted: function(){</code>
+                    <code>    // document ready</code>
+                    <code>  },</code>
+                    <code>  methods: {</code>
+                    <code>    sampleFunction: function() {</code>
+                    <code>      // your code</code>
+                    <code>    }</code>
+                    <code>  }</code>
+                    <code>}</code>
+                    <code>&lt;/script&gt;</code>
+                </div>
+            </div>
+            <div id="callAPI" class="sectionDisplay">
+                <h4>Call API</h4>
+                <div class="codeBlock">
+                    <code>// data that need pass to backend</code>
+                    <code>var formData = {</code>
+                    <code>    command: "documentDownloadList",</code>
+                    <code>    pageNumber: page || 1</code>
+                    <code>}</code>
+                    <br>
+                    <code>// call backend</code>
+                    <code>this.apiCaller(formData).then(result => {</code>
+
+                    <code>    // this is data return from backend</code>
+                    <code>    let getData = result['data'];</code>
+
+                    <code>    if(result['status'] == "ok") {</code>
+                    <code>        // your code here</code>
+                    <code>    }else{</code>
+                    <code>        this.errorHandler();</code>
+                    <code>    }</code>
+                    <code>});</code>
+                </div>
+            </div>
+            <div id="buildTable" class="sectionDisplay">
+                <h4>Build Table</h4>
+                <p>Import table component (If need special control better build your own table component)</p>
+                <div class="codeBlock">
+                    <code>import customTable from "./subComponent/Table.vue"</code>
+                </div>
+                <p class="nextMethod">Register table component</p>
+                <div class="codeBlock">
+                    <code>components: {</code>
+                    <code>    customTable</code>
+                    <code>},</code>
+                </div>
+                <p class="nextMethod">sample data for build table</p>
+                <div class="codeBlock">
+                    <code>data () {</code>
+                    <code>    return {</code>
+                    <code>      message: this.$t('M00367') /*No Result Found*/ ,</code>
+                    <code>      divId: 'portfolioDiv',</code>
+                    <code>      tableId: 'portfolioList',</code>
+                    <code>      listData: [],</code>
+                    <code>      currentPage: 1,</code>
+                    <code>      totalPage: 1,</code>
+                    <code>      rows: 1,</code>
+                    <code>      perPage: 70,</code>
+                    <code>      showTable: true</code>
+                    <code>    }</code>
+                    <code>},</code>
+                </div>
+                <p class="nextMethod">Build thArray</p>
+                <p><span class="text-danger">Put in computed instead of data</span></p>
+                <div class="codeBlock">
+                    <code>computed: {</code>
+                    <code>    thArray () {</code>
+                    <code>      return Array(</code>
+                    <code>        { text: this.$t('M00091'), value: 'date' },</code>
+                    <code>        { text: this.$t('M00064'), value: 'subject' },</code>
+                    <code>        { text: this.$t('M00065'), value: 'description' },</code>
+                    <code>      )</code>
+                    <code>    }</code>
+                    <code>},</code>
+                </div>
+                <p class="nextMethod">Build Table Data</p>
+                <div class="codeBlock">
+                    <code>buildTableData (list) {</code>
+                    <code>	if(list && list.length>0) {</code>
+                    <code>		var newList = [];</code>
+                    <code>		list.forEach((value, key) => {</code>
+                    <code>			newList.push({</code>
+                    <code>				date: value['created_at'],</code>
+                    <code>				subject: value['subject'],</code>
+                    <code>				description: value['description'],</code>
+                    <code>			});</code>
+                    <code>		});</code>
+                    <code>		this.listData = newList;</code>
+                    <code>	}</code>
+                    <code>},</code>
+                </div>
+                <p class="nextMethod">Display Table</p>
+                <p><span class="text-danger">Put this in template (html)</span></p>
+                <div class="codeBlock">
+                    <code>&lt;customTable</code>
+                    <code>  v-if="showTable"</code>
+                    <code>  :showPagination="true"</code>
+                    <code>  :divId="divId"</code>
+                    <code>  :tableId="tableId"</code>
+                    <code>  :thArray="thArray"</code>
+                    <code>  :listData="listData"</code>
+                    <code>  :message="message"</code>
+                    <code>  :currentPage="currentPage"</code>
+                    <code>  :rows="rows"</code>
+                    <code>  :totalPage="totalPage"</code>
+                    <code>  :perPage="perPage"</code>
+                    <code>  @changePage="changePage($event)"&gt;</code>
+                    <code>&lt;/customTable&gt;</code>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="#" class="backToTop"><i class="fa fa-arrow-up"></i></a>
+
+    <div class="passwordBlock" id="passwordBlock">
+        <div class="passwordWrap">
+            <input type="password" id="password" class="form-control" placeholder="Password">
+            <button id="submit" type="button" class="btn btn-success ml-1"><i class="fa fa-arrow-right"></i></button>
+        </div>
+    </div>
+</body>
+</html>

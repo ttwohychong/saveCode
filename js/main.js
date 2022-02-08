@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $("#sideBar").load("sidebar.html");
     $("#debugSideBar").load("debugSidebar.html");
+    $("#vueSideBar").load("vueSidebar.html");
     $("span[contenteditable='true']").attr("spellcheck", "false");
     $(".codeBlock").before(`<a class="copyBtn" href="javascript:;" onclick="copyToClipboard(this)"><i class="far fa-copy"></i></a>`);
 

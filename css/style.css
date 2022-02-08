@@ -187,8 +187,30 @@ span[contenteditable="true"]:focus {
     margin-right: 15px;
     margin-top: 10px;
     color: #aaa;
+    position: relative;
+    z-index: 4;
 }
 
 .copyBtn:hover {
     color: #308fce;
+}
+
+[data-desc] {
+    position: relative;
+}
+
+[data-desc]:hover {
+    background-color: rgb(235, 248, 215);
+}
+
+[data-desc]:hover:after {
+    content: attr(data-desc);
+    position: absolute;
+    top: 15px;
+    right: 30px;
+    background-color: rgba(0,0,0,.1);
+    color: #000;
+    width: 300px;
+    padding: 15px;
+    border-radius: 10px;
 }
