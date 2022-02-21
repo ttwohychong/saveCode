@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="js/main.js"></script>
+</head>
+<body>
+    <div class="gridContainer wrap">
+        <div class="bodyContent">
+            <div class="sectionDisplay">
+                <a href="vue.html" class="backBtn"><i class="fa fa-arrow-left"></i> Back</a>
+            </div>
+<p>There are two major parts of codes for Vuex, the <bold>store/injex.js</bold> & the <bold>component part</bold></p>
+<h4 class="mt-2"><bold>store/index.js</bold></h4>
+<p class="mt-1">
+    Used to define the global state and how to modifies it. 'state' is used to initialize the state, while 'actions' is used to initialize the state modification which then leads to 'mutations' which does the actual state changes. 'getters' is often used to return state value in other components.
+</p>
+<div class="codeBlock">
+<code class="mt-1">
+    import Vue from 'vue'
+    import Vuex from 'vuex'
+    import 'es6-promise/auto'
+
+    Vue.use(Vuex)
+
+    export default new Vuex.Store({
+        state: {
+            loginSession: {
+                userID: localStorage.getItem("userID")? window.atob(localStorage.getItem("userID")) : "",
+                username: localStorage.getItem("username")? window.atob(localStorage.getItem("username")) : ""
+            },
+            currentPlatformID: localStorage.getItem("currentPlatformID")?JSON.parse(localStorage.getItem("currentPlatformID")):"",
+        },
+        actions: {
+            loginAction (context, userDetails) {
+                context.commit('setLoginSession', userDetails);
+            },
+            logoutAction (context) {
+                context.commit('clearLoginSession');
+            },
+            changePlatformAction (context, platformID) {
+                context.commit('changePlatformID', platformID);
+            }
+        },
+        mutations: {
+            setLoginSession (state, loginData) {
+                var userDetails = loginData.userDetails
+                state.loginSession.username=userDetails.username;
+                state.loginSession.userID=userDetails.userID;
+                localStorage.setItem("userID", window.btoa(state.loginSession.userID));
+                localStorage.setItem("username", window.btoa(state.loginSession.username));
+            },
+            clearLoginSession (state) {
+                state.loginSession.username= '';
+                state.loginSession.userID= '';
+                localStorage.setItem("userID", window.btoa(state.loginSession.userID));
+                localStorage.setItem("username", window.btoa(state.loginSession.username));
+            },
+            changePlatformID (state, platformID) {
+                localStorage.setItem("currentPlatformID", platformID);
+                state.currentPlatformID = platformID;
+            }
+        },
+        getters: {
+            getLoginSession(state){
+                return state.loginSession;
+            }
+        }
+    })
+</code>
+</div>
+
+<h4 class="mt-2"><bold>platformTab.vue (component)</bold></h4>
+<p class="mt-1">
+    We can mutate the state value in component via dispatching the actions in the 'changePlatform' method.
+</p>
+
+<div class="codeBlock">
+<code class="mt-1">
+    export default {
+        name: 'platformTab',
+        data () {
+          return {
+            getPlatformList: [],
+            platformID: null
+          }
+        }, 
+        mounted: function(){
+        },
+        methods: {
+          changePlatform(getPlatformID){      
+            this.platformID = getPlatformID;
+            this.$store.dispatch('changePlatformAction', getPlatformID);
+          },
+        }
+    }
+</code>
+</div>
+
+<p class="mt-2">
+    To conclude, we first define the state, action, and mutation in store, then we can modifies the state value via dispatching the action from component. 
+    <ol>
+        <li>Dispatching the action in component.</li>
+        <li>The action is dispatched in store and it leads to mutation.</li>
+        <li>The state value is changed in mutation.</li>
+    </ol>
+    And one important point to keep in mind is that Vuex state isn't same with browser localStorage, we will have to save it manually into localStorage if needed.
+</p>
+</div>
+    </div>
+</body>
+</html>
