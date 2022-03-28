@@ -1,0 +1,31 @@
+<html>
+
+<head>
+    <title>Your Website Title</title>
+    <!-- You can use Open Graph tags to customize link previews.
+Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
+    <!-- <meta property="og:url" content="https://ttwohychong.github.io/saveCode/testShare.html" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Share FB Testing" />
+    <meta property="og:description" content="Description for testing" />
+    <meta property="og:image" content="https://ttwohychong.github.io/saveCode/img/errorField.jpg" /> -->
+</head>
+
+<body>
+    <div id="mImageBox">
+        <img id='my_image' src='https://ttwohychong.github.io/saveCode/img/comma.jpg' alt='comma' width="auto" height="auto" onclick="fbs_click(this)" />
+    </div>
+
+    <script>
+        function fbs_click(TheImg) {
+            u = TheImg.src;
+            // t=document.title;
+            t = TheImg.getAttribute('alt');
+            window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(u) + '&t=' + encodeURIComponent(t), 'sharer', 'toolbar=0,status=0,width=626,height=436');
+            return false;
+        }
+    </script>
+
+</body>
+
+</html>
