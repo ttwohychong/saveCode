@@ -16,13 +16,44 @@ Learn more: https://developers.facebook.com/docs/sharing/webmasters -->
         <img id='my_image' src='https://ttwohychong.github.io/saveCode/img/comma.jpg' alt='comma' width="auto" height="auto" onclick="fbs_click(this)" />
     </div>
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js"></script>
     <script>
+        // function fbs_click(TheImg) {
+        //     u = TheImg.src;
+        //     // t=document.title;
+        //     t = TheImg.getAttribute('alt');
+        //     window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(u) + '&t=' + encodeURIComponent(t), 'sharer', 'toolbar=0,status=0,width=626,height=436');
+        //     return false;
+        // }
+
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId: '1421259951624903',
+                autoLogAppEvents: true,
+                xfbml: true,
+                version: 'v13.0'
+            });
+        };
+
         function fbs_click(TheImg) {
-            u = TheImg.src;
-            // t=document.title;
-            t = TheImg.getAttribute('alt');
-            window.open('http://www.facebook.com/sharer.php?u=' + encodeURIComponent(u) + '&t=' + encodeURIComponent(t), 'sharer', 'toolbar=0,status=0,width=626,height=436');
-            return false;
+            FB.ui({
+                    method: `share`,
+                    name: 'Facebook Dialogs',
+                    href: $(location).attr('href'),
+                    link: "https://testbbbsmember.speed101.pw/",
+                    picture: TheImg.src,
+                    caption: 'BBBS',
+                    description: 'Test Share'
+                },
+                function(response) {
+                    if (response && response.post_id) {
+                        alert('success');
+                    } else {
+                        alert('error');
+                    }
+                }
+            );
         }
     </script>
 
