@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Language</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
+    <style>
+        div {
+            margin-top: 15px;
+        }
+        
+        label {
+            display: inline-block;
+            width: 120px;
+        }
+        
+        #copy {
+            display: inline-block;
+            padding: 4px 20px;
+            line-height: 30px;
+            border: none;
+            border-radius: 5px;
+            background-color: steelblue;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="loadJSWrapper" class="d-flex">
+            <input type="text" id="linkInp" class="form-control" onchange="linkJs()">
+            <button type="button" class="btn btn-primary ml-3" onclick="linkJs()">Link</button>
+        </div>
+
+        <div id="searchBlock" class="d-none">
+            <input type="text" id="searchInp" class="form-control" onchange="search()">
+            <button type="button" class="btn btn-primary ml-3" onclick="search()"><i class="fa fa-search"></i></button>
+        </div>
+
+        <div class="row" id="languageBlock"></div>
+    </div>
+
+    <!-- <script src="https://testvtmember.speed101.pw/language/lang_english.js"></script> -->
+    <script>
+        // var langVal = Object.values(translations);
+        // var langKey = Object.keys(translations);
+
+        // $(document).ready(function() {});
+
+        function search() {
+            var searchTxt = $("#searchInp").val();
+            if (searchTxt.trim() != "") {
+                var filtered = filterObj(searchTxt);
+                var html = "";
+
+                console.log(filtered);
+
+                $.each(filtered, function(k, v) {
+                    html += `
+                        <div class="col-md-12 pb-3 border">
+                            <div class="d-flex align-items-center">
+                                <span class="col">
+                                    <span class="badge badge-secondary">${k}</span>
+                                    <span class="txt">${v['english']}</span>
+                                </span>
+                                <button type="button" class="btn btn-primary" data-lang="${k}" onclick="copyToClipboard(this)"><i class="fa fa-copy"></i></button>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                $("#languageBlock").html(html);
+            }
+        }
+
+        function linkJs() {
+            var myScript = document.createElement('script');
+            var txt = $("#linkInp").val();
+            myScript.setAttribute('src', txt);
+            document.head.appendChild(myScript);
+
+            myScript.onload = function() {
+                alert('Loaded');
+
+                $("#loadJSWrapper").removeClass("d-flex").addClass("d-none")
+                $("#searchBlock").removeClass("d-none").addClass("d-flex")
+            };
+        }
+
+        function filterObj(txt) {
+            var obj = {};
+            $.each(translations, function(k, v) {
+                if (v['english'] && v['english'].toString().toLowerCase().indexOf(txt.toLowerCase()) >= 0) {
+                    obj[k] = v
+                }
+            })
+
+            return obj;
+        }
+
+        function copyToClipboard(n) {
+            var code = $(n).attr('data-lang');
+            var txt = $(n).parent().find('.txt').text();
+
+            var copied = `<?php echo $translations['${code}'][$language]; \/* ${txt} *\/ ?>`;
+
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val(copied).select();
+            document.execCommand("copy");
+            $temp.remove();
+        }
+    </script>
+</body>
+
+</html>
