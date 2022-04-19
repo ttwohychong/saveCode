@@ -66,12 +66,14 @@
                 console.log(filtered);
 
                 $.each(filtered, function(k, v) {
+                    var key = Object.keys(v)[0];
+
                     html += `
                         <div class="col-md-12 pb-3 border">
                             <div class="d-flex align-items-center">
                                 <span class="col">
                                     <span class="badge badge-secondary">${k}</span>
-                                    <span class="txt">${v['english']}</span>
+                                    <span class="txt">${v[key]}</span>
                                 </span>
                                 <button type="button" class="btn btn-primary" data-lang="${k}" onclick="copyToClipboard(this)"><i class="fa fa-copy"></i></button>
                             </div>
@@ -100,7 +102,9 @@
         function filterObj(txt) {
             var obj = {};
             $.each(translations, function(k, v) {
-                if (v['english'] && v['english'].toString().toLowerCase().indexOf(txt.toLowerCase()) >= 0) {
+                var key = Object.keys(v)[0];
+
+                if (v[key] && v[key].toString().toLowerCase().indexOf(txt.toLowerCase()) >= 0) {
                     obj[k] = v
                 }
             })
