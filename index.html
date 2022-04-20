@@ -886,6 +886,35 @@
         </div>
     </div>
 
+    <div class="modal fade" id="removeExtension">
+        <div class="modal-dialog modal-lg">
+          <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Remove PHP extension but still working on local</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <ol>
+                    <li>Open your C:\Apache24\conf\httpd.conf</li>
+                    <li>Search this line
+                        <ul>
+                            <li>#LoadModule rewrite_module modules/mod_rewrite.so</li>
+                        </ul>
+                    </li>
+                    <li>Remove the # at the front of this line</li>
+                    <li>Move this .htaccess to C:\Apache24\htdocs <a href="htaccess.zip" download>Download</a></li>
+                    <li>Restart Apache</li>
+                    <li>try to access any project and remove file extension</li>
+                </ol>
+
+                <span class="text-danger">*** file with extension like homepage.php should be working too de</span>
+            </div>
+          </div>
+        </div>
+    </div>
+
     <div class="passwordBlock" id="passwordBlock">
         <div class="passwordWrap">
             <input type="password" id="password" class="form-control" placeholder="Password">
